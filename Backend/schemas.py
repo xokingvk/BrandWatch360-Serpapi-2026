@@ -6,11 +6,7 @@ from pydantic import BaseModel
 # ============================================================
 
 class BrandInvestigationResult(BaseModel):
-    search_queries: list[str]
-    investigation_location: str
-    owner_website_status: str
-    organic_findings: str
-    advertisement_findings: str
+    web_search_report: str
     maps_findings: str
     news_findings: str
     anomaly_detected: bool

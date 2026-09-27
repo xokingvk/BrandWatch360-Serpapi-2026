@@ -1,4 +1,8 @@
-from serpapi_search_tools import web_search, SearchResultMode
+from serpapi_search_tools import (
+    web_search,
+    SearchResultMode,
+    SearchResultFormat,
+)
 
 
 # ============================================================
@@ -10,4 +14,5 @@ search_tool = web_search(
     default_engine="google",
     result_limit=10,
     mode=SearchResultMode.FULL,
+    response_format=SearchResultFormat.JSON,
 )
