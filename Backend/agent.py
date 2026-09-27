@@ -22,9 +22,9 @@ from google.genai import types
 # BRANDGUARD360 SERVICES
 # ============================================================
 
-from web_service import search_tool
-from maps_service import maps_tool
-from news_service import news_tool
+from Services.web_service import search_tool
+from Services.maps_service import maps_tool
+from Services.news_service import news_tool
 
 
 # ============================================================
