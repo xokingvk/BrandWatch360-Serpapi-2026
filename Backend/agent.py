@@ -15,7 +15,7 @@ import serpapi
 from serpapi_search_tools import web_search, SearchResultMode
 
 
-# --- Tool 1: Regular web search (organic results) ---
+
 search_tool = web_search(
     allowed_engines=["google"],
     default_engine="google",
@@ -24,7 +24,7 @@ search_tool = web_search(
 )
 
 
-# --- Tool 2: Dedicated Google Ads API (custom, not in serpapi-search-tools) ---
+
 async def google_ads_search(query: str, location: str) -> dict:
     """
     Searches Google Ads API via SerpApi to find sponsored/paid ads
@@ -51,7 +51,7 @@ async def google_ads_search(query: str, location: str) -> dict:
 ads_tool = FunctionTool(func=google_ads_search)
 
 
-# --- Output schema ---
+
 class SearchInvestigationResult(BaseModel):
     search_queries: list[str]
     investigation_location: str
