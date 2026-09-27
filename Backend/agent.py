@@ -1,55 +1,43 @@
 import asyncio
 from dotenv import load_dotenv
 
+# ============================================================
+# LOAD ENVIRONMENT
+# ============================================================
+
 load_dotenv()
+
+
+# ============================================================
+# GOOGLE ADK / GEMINI
+# ============================================================
 
 from google.adk.agents import Agent
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 from google.genai import types
-from pydantic import BaseModel
-
-from serpapi_search_tools import web_search, maps_search, news_search, SearchResultMode
 
 
 # ============================================================
-# TOOLS — all three, always available
+# BRANDGUARD360 SERVICES
 # ============================================================
-search_tool = web_search(
-    allowed_engines=["google"],
-    default_engine="google",
-    result_limit=10,
-    mode=SearchResultMode.FULL,
-)
 
-maps_tool = maps_search(
-    result_limit=10,
-)
-
-news_tool = news_search(
-    result_limit=10,
-)
+from web_service import search_tool
+from maps_service import maps_tool
+from news_service import news_tool
 
 
 # ============================================================
-# SCHEMA — single combined report
+# SCHEMA
 # ============================================================
-class BrandInvestigationResult(BaseModel):
-    search_queries: list[str]
-    investigation_location: str
-    owner_website_status: str
-    organic_findings: str
-    advertisement_findings: str
-    maps_findings: str
-    news_findings: str
-    anomaly_detected: bool
-    explanation: str
-    source_links: list[str]
+
+from schemas import BrandInvestigationResult
 
 
 # ============================================================
-# SINGLE AGENT — always runs all 3 tools
+# SINGLE AGENT — ALWAYS RUNS ALL 3 TOOLS
 # ============================================================
+
 root_agent = Agent(
     name="brandguard360_agent",
     model="gemini-flash-lite-latest",
@@ -102,25 +90,37 @@ Return a concise investigation result containing:
 
 
 # ============================================================
-# ORCHESTRATION — single call, no branching
+# ORCHESTRATION — SINGLE CALL, NO BRANCHING
 # ============================================================
+
 async def investigate_brand(runner, session_service, brand, state, website):
+
     session_id = f"check_{state.replace(' ', '_')}"
+
     await session_service.create_session(
-        app_name="brandguard360", user_id="test_user", session_id=session_id
+        app_name="brandguard360",
+        user_id="test_user",
+        session_id=session_id
     )
 
     message = types.Content(
         role="user",
-        parts=[types.Part(text=(
-            f"Investigate the brand '{brand}' in '{state}'. "
-            f"Owner website: '{website}'."
-        ))],
+        parts=[
+            types.Part(
+                text=(
+                    f"Investigate the brand '{brand}' in '{state}'. "
+                    f"Owner website: '{website}'."
+                )
+            )
+        ],
     )
 
     output = ""
+
     async for event in runner.run_async(
-        user_id="test_user", session_id=session_id, new_message=message
+        user_id="test_user",
+        session_id=session_id,
+        new_message=message
     ):
         if event.is_final_response() and event.content:
             for part in event.content.parts or []:
@@ -129,20 +129,40 @@ async def investigate_brand(runner, session_service, brand, state, website):
 
     print(f"\n{'=' * 50}\n{state}\n{'=' * 50}")
     print(output)
+
     return output
 
 
+# ============================================================
+# TEST
+# ============================================================
+
 async def run_test():
+
     session_service = InMemorySessionService()
 
-    runner = Runner(agent=root_agent, app_name="brandguard360", session_service=session_service)
+    runner = Runner(
+        agent=root_agent,
+        app_name="brandguard360",
+        session_service=session_service
+    )
 
     brand = "Netflix"
     state = "Mumbai"
     website = "https://www.netflix.com/in/"
 
-    await investigate_brand(runner, session_service, brand, state, website)
+    await investigate_brand(
+        runner,
+        session_service,
+        brand,
+        state,
+        website
+    )
 
+
+# ============================================================
+# ENTRY POINT
+# ============================================================
 
 if __name__ == "__main__":
     asyncio.run(run_test())
