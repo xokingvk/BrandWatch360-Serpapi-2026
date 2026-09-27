@@ -1,5 +1,7 @@
 import asyncio
 import json
+from datetime import datetime, timezone
+
 from dotenv import load_dotenv
 
 # ============================================================
@@ -211,20 +213,62 @@ Explanation
 - Do not claim certainty beyond the available evidence.
 
 ------------------------------------------------------------
+EVIDENCE PROVENANCE
+------------------------------------------------------------
+
+For every important finding used in the investigation, create
+an evidence item.
+
+Each evidence item must contain:
+
+- engine
+  Use exactly one of:
+  "google_web"
+  "google_maps"
+  "google_news"
+
+- query
+  The actual query used for the search.
+
+- location
+  The actual investigation location used for the search.
+
+- observed_at
+  Leave this empty. The application will add the observation time.
+
+- source_url
+  The actual source URL returned by the search tool.
+
+- title
+  The actual result title when available.
+
+- finding
+  A short description of what the source actually shows.
+
+IMPORTANT:
+- Do not invent evidence.
+- Do not invent source URLs.
+- Do not invent queries.
+- Do not invent titles.
+- Only create evidence items from actual results returned
+  by the three search tools.
+- Keep evidence separate from interpretation.
+
+------------------------------------------------------------
 FINAL OUTPUT
 ------------------------------------------------------------
 
 Return:
-
 - search queries used
 - investigation location
 - owner website status
-- WEB SEARCH report
-- MAPS findings
-- NEWS findings
+- web search report
+- maps findings
+- news findings
 - anomaly_detected: true/false
 - explanation
 - source links
+- evidence
 """,
     tools=[search_tool, maps_tool, news_tool],
     output_schema=BrandInvestigationResult,
@@ -316,9 +360,9 @@ async def run_test():
         session_service=session_service
     )
 
-    brand = "Netflix"
-    state = "Mumbai"
-    website = "https://www.netflix.com/in/"
+    brand = "Swiggy"
+    state = "Tamil Nadu, india"
+    website = "https://www.swiggy.com"
 
     await investigate_brand(
         runner,
