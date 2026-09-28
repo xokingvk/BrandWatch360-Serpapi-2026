@@ -43,7 +43,7 @@ from schemas import BrandInvestigationResult
 
 root_agent = Agent(
     name="brandguard360_agent",
-    model="gemini-flash-lite-latest",
+    model="gemini-3.5-flash-lite",
     instruction="""
 You are the BrandGuard360 investigation agent.
 
@@ -381,9 +381,9 @@ async def run_test():
         session_service=session_service
     )
 
-    brand = "Swiggy"
-    state = "Tamil Nadu, india"
-    website = "https://www.swiggy.com"
+    brand = "Makeprd"
+    state = "tamilnadu, india"
+    website = "https://www.makeprd.io/"
 
     await investigate_brand(
         runner,
