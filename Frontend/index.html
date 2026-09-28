@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrandGuard360 — AI-Powered Brand Search-Presence Investigation</title>
+  <meta name="description" content="BrandGuard360 investigates Google Search, Maps, and News to help you understand how your brand appears online with inspectable evidence.">
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Global Application Shell -->
+  <div class="app-layout">
+    
+    <!-- Top Navigation -->
+    <header class="top-nav" id="topNav">
+      <div class="nav-container">
+        
+        <!-- Brand Logo -->
+        <a href="#home" class="brand-logo" id="brandLogo" aria-label="BrandGuard360 Home">
+          <span class="logo-mark" aria-hidden="true">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L2 4.5V10.2C2 15.3 5.4 20.1 10 21C14.6 20.1 18 15.3 18 10.2V4.5L10 1Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 10.5L9 12.5L13.5 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="logo-text">
+            <span class="logo-name">BrandGuard</span><span class="logo-accent">360</span>
+          </span>
+        </a>
+
+        <!-- Center Navigation Links -->
+        <nav class="nav-links" id="mainNavigation" aria-label="Primary Navigation">
+          <a href="#home" class="nav-link active" id="navHome">Home</a>
+          <a href="#how-it-works" class="nav-link" id="navHowItWorks">How It Works</a>
+          <a href="#reports" class="nav-link" id="navReports">Reports</a>
+        </nav>
+
+        <!-- Right Action Button -->
+        <div class="nav-actions">
+          <a href="#investigate-card" class="btn-nav-primary" id="btnNavInvestigate">
+            <span>New Investigation</span>
+          </a>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content" id="mainContent">
+
+      <!-- Hero Section -->
+      <section class="hero-section" id="home">
+        <div class="content-container hero-inner">
+          
+          <div class="eyebrow-pill" id="heroEyebrow">
+            <span class="eyebrow-dot"></span>
+            <span class="eyebrow-text">AI-POWERED BRAND INVESTIGATION</span>
+          </div>
+
+          <h1 class="hero-headline" id="heroHeadline">
+            Understand How Your <span class="copper-accent">Brand</span> Appears Online.
+          </h1>
+
+          <p class="hero-subtext" id="heroSubtext">
+            BrandGuard360 investigates Google Search, Maps, and News to help you understand how your brand appears online — with evidence you can inspect.
+          </p>
+
+        </div>
+      </section>
+
+      <!-- Main Investigation Card Section -->
+      <section class="investigation-section" id="investigate-card" aria-label="Brand Investigation Form">
+        <div class="content-container">
+          
+          <div class="investigation-card" id="investigationMainCard">
+            
+            <div class="card-header">
+              <div class="card-heading-group">
+                <span class="card-kicker">START AN INVESTIGATION</span>
+                <p class="card-instruction">Enter a brand and location to investigate its search presence.</p>
+              </div>
+            </div>
+
+            <!-- Investigation Form -->
+            <form class="investigation-form" id="investigationForm" novalidate>
+              
+              <div class="form-grid">
+                
+                <!-- Field 1: Brand Name -->
+                <div class="form-field-group" id="fieldBrandGroup">
+                  <label for="inputBrandName" class="field-label">
+                    <span>Brand Name</span>
+                    <span class="required-indicator" aria-hidden="true">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <span class="field-icon" aria-hidden="true">
+                      <!-- Building / Brand Icon -->
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 21h18"/>
+                        <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/>
+                        <path d="M9 9h1"/>
+                        <path d="M9 13h1"/>
+                        <path d="M9 17h1"/>
+                        <path d="M14 9h1"/>
+                        <path d="M14 13h1"/>
+                        <path d="M14 17h1"/>
+                      </svg>
+                    </span>
+                    <input 
+                      type="text" 
+                      id="inputBrandName" 
+                      name="brandName" 
+                      class="text-input" 
+                      placeholder="e.g. Makeprd" 
+                      required 
+                      autocomplete="organization"
+                      spellcheck="false"
+                    />
+                  </div>
+                  <span class="field-validation-msg" id="brandError" aria-live="polite"></span>
+                </div>
+
+                <!-- Field 2: Location -->
+                <div class="form-field-group" id="fieldLocationGroup">
+                  <label for="inputLocation" class="field-label">
+                    <span>Location</span>
+                    <span class="required-indicator" aria-hidden="true">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <span class="field-icon" aria-hidden="true">
+                      <!-- Location Pin Icon -->
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                      </svg>
+                    </span>
+                    <input 
+                      type="text" 
+                      id="inputLocation" 
+                      name="location" 
+                      class="text-input" 
+                      placeholder="e.g. Chennai, Tamil Nadu" 
+                      required 
+                      autocomplete="address-level2"
+                      spellcheck="false"
+                    />
+                  </div>
+                  <span class="field-validation-msg" id="locationError" aria-live="polite"></span>
+                </div>
+
+                <!-- Field 3: Owner Website (optional) -->
+                <div class="form-field-group" id="fieldWebsiteGroup">
+                  <label for="inputWebsite" class="field-label">
+                    <span>Owner Website <span class="label-optional">(optional)</span></span>
+                  </label>
+                  <div class="input-wrapper">
+                    <span class="field-icon" aria-hidden="true">
+                      <!-- Globe / Link Icon -->
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        <path d="M2 12h20"/>
+                      </svg>
+                    </span>
+                    <input 
+                      type="url" 
+                      id="inputWebsite" 
+                      name="website" 
+                      class="text-input" 
+                      placeholder="e.g. https://example.com" 
+                      autocomplete="url"
+                      spellcheck="false"
+                    />
+                  </div>
+                  <span class="field-validation-msg" id="websiteError" aria-live="polite"></span>
+                </div>
+
+              </div>
+
+              <!-- Form Action & Reassurance -->
+              <div class="form-action-area">
+                <button type="submit" class="btn-primary-investigate" id="btnInvestigateSubmit">
+                  <span class="btn-icon" aria-hidden="true">
+                    <!-- Clean Search Line Icon -->
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"/>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                  </span>
+                  <span class="btn-text">Investigate Brand</span>
+                </button>
+
+                <p class="reassurance-text" id="reassuranceNote">
+                  Search, Maps, and News evidence will be analyzed together.
+                </p>
+              </div>
+
+            </form>
+
+            <!-- Active Investigation Simulation Drawer / Feedback (Evidence-Based) -->
+            <div class="investigation-feedback-panel" id="investigationFeedbackPanel" aria-hidden="true">
+              <div class="feedback-header">
+                <div class="feedback-status-badge">
+                  <span class="pulse-dot"></span>
+                  <span id="feedbackStatusText">INITIALIZING INVESTIGATION DOSSIER</span>
+                </div>
+                <button type="button" class="btn-close-feedback" id="btnCloseFeedback" aria-label="Dismiss status">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              </div>
+              
+              <div class="feedback-body">
+                <div class="target-summary">
+                  <span class="target-label">Target:</span>
+                  <strong id="feedbackTargetBrand">Makeprd</strong>,
+                  <span id="feedbackTargetLocation">Chennai, Tamil Nadu</span>
+                </div>
+
+                <div class="evidence-pipeline-steps">
+                  <div class="pipeline-step step-search active" id="pipelineSearch">
+                    <div class="pipeline-step-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </div>
+                    <div class="pipeline-step-info">
+                      <div class="pipeline-step-title">Google Search</div>
+                      <div class="pipeline-step-status" id="statusSearchMsg">Collecting organic results & ad signals...</div>
+                    </div>
+                    <div class="pipeline-step-indicator" id="indicatorSearch">&#10003;</div>
+                  </div>
+
+                  <div class="pipeline-step step-maps" id="pipelineMaps">
+                    <div class="pipeline-step-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div class="pipeline-step-info">
+                      <div class="pipeline-step-title">Google Maps</div>
+                      <div class="pipeline-step-status" id="statusMapsMsg">Checking verified listings & location signals...</div>
+                    </div>
+                    <div class="pipeline-step-indicator" id="indicatorMaps">Pending</div>
+                  </div>
+
+                  <div class="pipeline-step step-news" id="pipelineNews">
+                    <div class="pipeline-step-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+                    </div>
+                    <div class="pipeline-step-info">
+                      <div class="pipeline-step-title">Google News</div>
+                      <div class="pipeline-step-status" id="statusNewsMsg">Extracting contextual coverage evidence...</div>
+                    </div>
+                    <div class="pipeline-step-indicator" id="indicatorNews">Pending</div>
+                  </div>
+                </div>
+
+                <div class="pipeline-footer">
+                  <span class="evidence-tag">Evidence-Based Signal Analysis</span>
+                  <span class="pipeline-note">No numeric scores generated. Findings backed by public sources.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Investigation Sources Row (Contained inside the main interaction card structure) -->
+            <div class="sources-strip" id="investigationSources">
+              
+              <!-- Source 1: Google Search -->
+              <div class="source-item" id="sourceGoogleSearch">
+                <div class="source-icon-wrap" aria-hidden="true">
+                  <!-- Search Minimal SVG -->
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
+                </div>
+                <div class="source-content">
+                  <h2 class="source-title">Google Search</h2>
+                  <p class="source-desc">Organic results and advertisements</p>
+                </div>
+              </div>
+
+              <div class="source-separator" aria-hidden="true"></div>
+
+              <!-- Source 2: Google Maps -->
+              <div class="source-item" id="sourceGoogleMaps">
+                <div class="source-icon-wrap" aria-hidden="true">
+                  <!-- Maps Pin Minimal SVG -->
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                </div>
+                <div class="source-content">
+                  <h2 class="source-title">Google Maps</h2>
+                  <p class="source-desc">Nearby business listings and location signals</p>
+                </div>
+              </div>
+
+              <div class="source-separator" aria-hidden="true"></div>
+
+              <!-- Source 3: Google News -->
+              <div class="source-item" id="sourceGoogleNews">
+                <div class="source-icon-wrap" aria-hidden="true">
+                  <!-- News Minimal SVG -->
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                    <path d="M18 14h-8"/>
+                    <path d="M15 18h-5"/>
+                    <path d="M10 6h8v4h-8V6Z"/>
+                  </svg>
+                </div>
+                <div class="source-content">
+                  <h2 class="source-title">Google News</h2>
+                  <p class="source-desc">Relevant coverage and contextual evidence</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section: How BrandGuard360 Works -->
+      <section class="how-it-works-section" id="how-it-works" aria-label="How BrandGuard360 Works">
+        <div class="content-container">
+          
+          <div class="section-header-centered">
+            <h2 class="section-title">How BrandGuard360 Works</h2>
+          </div>
+
+          <div class="how-it-works-columns">
+            
+            <!-- Column 01: Search -->
+            <div class="work-column" id="colSearch">
+              <div class="work-column-icon search-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"/>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+              </div>
+              <h3 class="work-column-heading">Search</h3>
+              <p class="work-column-desc">
+                Investigate the brand across Google Search, including organic results and available advertisements.
+              </p>
+            </div>
+
+            <!-- Column 02: Maps -->
+            <div class="work-column" id="colMaps">
+              <div class="work-column-icon maps-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <h3 class="work-column-heading">Maps</h3>
+              <p class="work-column-desc">
+                Check nearby Google Maps listings for relevant businesses and potential naming similarities.
+              </p>
+            </div>
+
+            <!-- Column 03: News -->
+            <div class="work-column" id="colNews">
+              <div class="work-column-icon news-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                  <path d="M18 14h-8"/>
+                  <path d="M15 18h-5"/>
+                  <path d="M10 6h8v4h-8V6Z"/>
+                </svg>
+              </div>
+              <h3 class="work-column-heading">News</h3>
+              <p class="work-column-desc">
+                Review relevant Google News coverage for context around the brand and investigated signals.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Minimal Restrained Footnote / System Meta -->
+      <footer class="system-footnote" id="reports">
+        <div class="content-container footnote-inner">
+          <div class="footnote-left">
+            <span class="brand-submark">BrandGuard360</span>
+            <span class="footnote-sep">—</span>
+            <span class="footnote-text">Evidence-based brand search-presence intelligence</span>
+          </div>
+          <div class="footnote-right">
+            <span class="system-badge">Google Search, Maps, and News</span>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
