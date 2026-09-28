@@ -94,8 +94,6 @@ Use clear sections and put each item on its own line.
 
 Format it exactly like this:
 
-WEB SEARCH
-
 Brand: <brand>
 Location: <location>
 
@@ -135,15 +133,31 @@ If no advertisements were returned, write exactly:
 No ads found
 
 Potential Competitors
-If potential competitors were found:
+This section must reflect evidence from ALL THREE sources
+(Web Search, Maps, and News) TOGETHER — not just organic web
+results. A competitor that only appeared in a News article or a
+Maps listing must still be listed here.
 
-1. <name>
-   Domain: <domain>
-   Reason: <short reason>
+First list every competitor brand/business name that appeared
+ANYWHERE in the evidence, even in neutral or purely informational
+context (e.g. a news article mentioning both brands together with
+no wrongdoing implied). Write this as:
 
-If none were found, write:
+Mentioned: <name>, <name>, <name>
+(or "Mentioned: None" if nothing was found)
 
-None identified
+Then, separately, list only the names that are ALSO tied to actual
+suspicious evidence from this investigation — bidding on the
+brand's exact name in ads, copycat/lookalike naming in a Maps
+listing, or similar flagged behavior. Write this as:
+
+Suspicious: <name>, <name>
+(or "Suspicious: None" if nothing suspicious was found, even when
+"Mentioned" is not empty)
+
+A name appearing under "Mentioned" does NOT imply wrongdoing —
+only promote a name to "Suspicious" when there is real evidence
+tied to it from this investigation.
 
 Web Summary
 Write one detailed paragraph explaining what the Google Search
@@ -166,15 +180,18 @@ GOOGLE MAPS
 After using maps_search, provide:
 
 Maps Findings
-- Important business listings
-- Business name
-- Location/address when available
-- Type/category when available
-- Whether the listing appears relevant to the brand
-- Potential competitor information when relevant
+Write 2-3 short sentences in plain language. State whether any
+suspicious or copycat-named listings were found, and briefly
+confirm the brand's legitimate local presence if relevant. Do NOT
+list every business individually with separate fields — a business
+owner reading this wants a quick answer, not a raw data dump.
 
-Maps Summary
-- Give a detailed but concise summary of the Maps evidence.
+Example style:
+"No suspicious listings found. [Brand]'s official offices in
+[city/area] are confirmed and legitimate."
+or
+"A listing named '[name]' near [area] uses a very similar name to
+[Brand] and has no verifiable connection — worth a closer look."
 
 
 ------------------------------------------------------------
@@ -184,15 +201,19 @@ GOOGLE NEWS
 After using news_search, provide:
 
 News Findings
-- Important relevant articles
-- Article title
-- Source
-- Date when available
-- Brand or competitor mentioned
-- Short reason why the article is relevant
+Write 2-3 short sentences in plain language. State whether any
+concerning news (disputes, complaints, legal issues) was found
+about the brand or a flagged competitor. If coverage is just
+normal industry news mentioning competitors neutrally, say so
+briefly. Do NOT list every article individually with separate
+fields — a business owner wants a quick answer, not a raw list.
 
-News Summary
-- Give a detailed but concise summary of the News evidence.
+Example style:
+"No concerning news found — coverage is standard industry reporting
+mentioning [competitors] as normal market peers."
+or
+"A recent article reports [brief summary] involving [competitor] —
+relevant context for the earlier finding."
 
 
 ------------------------------------------------------------
