@@ -14,8 +14,11 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Global Application Shell -->
-  <div class="app-layout">
+
+  <!-- =========================================================================
+       SCREEN 1: HOME / NEW INVESTIGATION (PRESERVED EXACTLY AS COMPLETED)
+       ========================================================================= -->
+  <div class="app-layout" id="homePageWrapper">
     
     <!-- Top Navigation -->
     <header class="top-nav" id="topNav">
@@ -38,7 +41,6 @@
         <nav class="nav-links" id="mainNavigation" aria-label="Primary Navigation">
           <a href="#home" class="nav-link active" id="navHome">Home</a>
           <a href="#how-it-works" class="nav-link" id="navHowItWorks">How It Works</a>
-          <a href="#reports" class="nav-link" id="navReports">Reports</a>
         </nav>
 
         <!-- Right Action Button -->
@@ -117,7 +119,7 @@
                       id="inputBrandName" 
                       name="brandName" 
                       class="text-input" 
-                      placeholder="e.g. Makeprd" 
+                      placeholder="e.g. Google" 
                       required 
                       autocomplete="organization"
                       spellcheck="false"
@@ -203,7 +205,7 @@
 
             </form>
 
-            <!-- Active Investigation Simulation Drawer / Feedback (Evidence-Based) -->
+            <!-- Investigation Feedback Simulation Panel -->
             <div class="investigation-feedback-panel" id="investigationFeedbackPanel" aria-hidden="true">
               <div class="feedback-header">
                 <div class="feedback-status-badge">
@@ -232,7 +234,7 @@
                     </div>
                     <div class="pipeline-step-info">
                       <div class="pipeline-step-title">Google Search</div>
-                      <div class="pipeline-step-status" id="statusSearchMsg">Collecting organic results & ad signals...</div>
+                      <div class="pipeline-step-status" id="statusSearchMsg">Collecting organic results and ad signals...</div>
                     </div>
                     <div class="pipeline-step-indicator" id="indicatorSearch">&#10003;</div>
                   </div>
@@ -243,7 +245,7 @@
                     </div>
                     <div class="pipeline-step-info">
                       <div class="pipeline-step-title">Google Maps</div>
-                      <div class="pipeline-step-status" id="statusMapsMsg">Checking verified listings & location signals...</div>
+                      <div class="pipeline-step-status" id="statusMapsMsg">Checking verified listings and location signals...</div>
                     </div>
                     <div class="pipeline-step-indicator" id="indicatorMaps">Pending</div>
                   </div>
@@ -267,13 +269,12 @@
               </div>
             </div>
 
-            <!-- Investigation Sources Row (Contained inside the main interaction card structure) -->
+            <!-- Investigation Sources Row -->
             <div class="sources-strip" id="investigationSources">
               
               <!-- Source 1: Google Search -->
               <div class="source-item" id="sourceGoogleSearch">
                 <div class="source-icon-wrap" aria-hidden="true">
-                  <!-- Search Minimal SVG -->
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="11" cy="11" r="8"/>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -290,7 +291,6 @@
               <!-- Source 2: Google Maps -->
               <div class="source-item" id="sourceGoogleMaps">
                 <div class="source-icon-wrap" aria-hidden="true">
-                  <!-- Maps Pin Minimal SVG -->
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
                     <circle cx="12" cy="10" r="3"/>
@@ -307,7 +307,6 @@
               <!-- Source 3: Google News -->
               <div class="source-item" id="sourceGoogleNews">
                 <div class="source-icon-wrap" aria-hidden="true">
-                  <!-- News Minimal SVG -->
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
                     <path d="M18 14h-8"/>
@@ -387,8 +386,8 @@
         </div>
       </section>
 
-      <!-- Minimal Restrained Footnote / System Meta -->
-      <footer class="system-footnote" id="reports">
+      <!-- Minimal Restrained Footnote -->
+      <footer class="system-footnote" id="homeFootnote">
         <div class="content-container footnote-inner">
           <div class="footnote-left">
             <span class="brand-submark">BrandGuard360</span>
@@ -404,6 +403,884 @@
     </main>
   </div>
 
+
+  <!-- =========================================================================
+       SCREEN 2: INVESTIGATION LOADING (PREMIUM RESTRAINED DARK THEME)
+       ========================================================================= -->
+  <div class="loading-view-container" id="viewLoading" style="display: none;" aria-hidden="true">
+    <div class="loading-card-wrapper">
+      
+      <!-- Loading Header -->
+      <div class="loading-header">
+        <div class="loading-brand-pill">
+          <span class="pulse-indicator"></span>
+          <span id="loadingBrandTarget">Makeprd</span>
+          <span class="target-location-tag" id="loadingLocationTarget">Chennai, Tamil Nadu</span>
+        </div>
+        <h1 class="loading-title">Investigating Your Brand</h1>
+        <p class="loading-subtitle">Checking your brand across Google Search, Maps, and News.</p>
+      </div>
+
+      <!-- Exact 3 Stages in Locked Order -->
+      <div class="stages-timeline" id="stagesTimeline">
+        
+        <!-- Stage 01: Google Search -->
+        <div class="stage-step" id="stageStepSearch" data-stage="search">
+          <div class="stage-num-badge">01</div>
+          <div class="stage-main-info">
+            <div class="stage-source-header">
+              <h2 class="stage-source-title">Google Search</h2>
+              <span class="stage-state-pill" id="stagePillSearch">Pending</span>
+            </div>
+            <p class="stage-source-detail">Organic results and advertisements</p>
+            <div class="stage-progress-track">
+              <div class="stage-progress-fill" id="stageBarSearch"></div>
+            </div>
+            <div class="stage-log-message" id="stageMsgSearch">Awaiting pipeline initialization...</div>
+          </div>
+        </div>
+
+        <!-- Stage 02: Google Maps -->
+        <div class="stage-step" id="stageStepMaps" data-stage="maps">
+          <div class="stage-num-badge">02</div>
+          <div class="stage-main-info">
+            <div class="stage-source-header">
+              <h2 class="stage-source-title">Google Maps</h2>
+              <span class="stage-state-pill" id="stagePillMaps">Pending</span>
+            </div>
+            <p class="stage-source-detail">Nearby business listings</p>
+            <div class="stage-progress-track">
+              <div class="stage-progress-fill" id="stageBarMaps"></div>
+            </div>
+            <div class="stage-log-message" id="stageMsgMaps">Queued behind Google Search</div>
+          </div>
+        </div>
+
+        <!-- Stage 03: Google News -->
+        <div class="stage-step" id="stageStepNews" data-stage="news">
+          <div class="stage-num-badge">03</div>
+          <div class="stage-main-info">
+            <div class="stage-source-header">
+              <h2 class="stage-source-title">Google News</h2>
+              <span class="stage-state-pill" id="stagePillNews">Pending</span>
+            </div>
+            <p class="stage-source-detail">Relevant coverage and context</p>
+            <div class="stage-progress-track">
+              <div class="stage-progress-fill" id="stageBarNews"></div>
+            </div>
+            <div class="stage-log-message" id="stageMsgNews">Queued behind Google Maps</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Ready State CTA Area -->
+      <div class="loading-footer-area">
+        <div class="ready-banner" id="readyBanner" style="display: none;">
+          <div class="ready-icon-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17L4 12"/>
+            </svg>
+          </div>
+          <div class="ready-text-wrap">
+            <span class="ready-kicker">ANALYSIS COMPILED</span>
+            <span class="ready-headline">Investigation Ready</span>
+          </div>
+          <button type="button" class="btn-view-findings" id="btnViewFindings">
+            <span>View Findings</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/>
+              <path d="m12 5 7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+        
+        <p class="loading-disclaimer" id="loadingDisclaimer">
+          Evidence compiled from public Google surfaces. No numeric scores generated.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       INTERNAL APPLICATION SHELL (DESKTOP SIDEBAR + HEADER + SCREENS 3 TO 7)
+       ========================================================================= -->
+  <div class="internal-shell" id="internalAppShell" style="display: none;" aria-hidden="true">
+    
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+
+    <!-- Left Sidebar -->
+    <aside class="shell-sidebar" id="shellSidebar" aria-label="Internal Navigation">
+      <div class="sidebar-top">
+        
+        <!-- Logo -->
+        <a href="#home" class="sidebar-logo" id="sidebarBrandLogo" aria-label="BrandGuard360 Home">
+          <span class="sidebar-logo-icon" aria-hidden="true">
+            <svg width="18" height="20" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L2 4.5V10.2C2 15.3 5.4 20.1 10 21C14.6 20.1 18 15.3 18 10.2V4.5L10 1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 10.5L9 12.5L13.5 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="sidebar-logo-text">
+            <span>BrandGuard</span><span class="accent">360</span>
+          </span>
+        </a>
+
+        <!-- Sidebar Primary CTA -->
+        <div class="sidebar-action-wrap">
+          <button type="button" class="btn-sidebar-new" id="btnSidebarNewInvestigation">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>New Investigation</span>
+          </button>
+        </div>
+
+        <!-- Sidebar Navigation Links -->
+        <nav class="sidebar-nav" aria-label="Workspace Pages">
+          
+          <div class="nav-section-label">INVESTIGATION</div>
+          
+          <button type="button" class="sidebar-nav-item active" id="sideNavOverview" data-view="overview">
+            <span class="item-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="9" rx="1"/>
+                <rect x="14" y="3" width="7" height="5" rx="1"/>
+                <rect x="14" y="12" width="7" height="9" rx="1"/>
+                <rect x="3" y="16" width="7" height="5" rx="1"/>
+              </svg>
+            </span>
+            <span class="item-label">Overview</span>
+          </button>
+
+          <button type="button" class="sidebar-nav-item" id="sideNavSearch" data-view="search">
+            <span class="item-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </span>
+            <span class="item-label">Search</span>
+            <span class="item-badge" id="sideBadgeSearch">14</span>
+          </button>
+
+          <button type="button" class="sidebar-nav-item" id="sideNavMaps" data-view="maps">
+            <span class="item-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </span>
+            <span class="item-label">Maps</span>
+            <span class="item-badge" id="sideBadgeMaps">3</span>
+          </button>
+
+          <button type="button" class="sidebar-nav-item" id="sideNavNews" data-view="news">
+            <span class="item-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                <path d="M18 14h-8"/>
+                <path d="M15 18h-5"/>
+                <path d="M10 6h8v4h-8V6Z"/>
+              </svg>
+            </span>
+            <span class="item-label">News</span>
+            <span class="item-badge" id="sideBadgeNews">3</span>
+          </button>
+
+          <div class="nav-section-label" style="margin-top: 18px;">HISTORY</div>
+
+          <button type="button" class="sidebar-nav-item" id="sideNavReports" data-view="reports">
+            <span class="item-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <line x1="10" y1="9" x2="8" y2="9"/>
+              </svg>
+            </span>
+            <span class="item-label">Reports</span>
+          </button>
+
+        </nav>
+      </div>
+
+      <!-- Sidebar Bottom: Settings -->
+      <div class="sidebar-bottom">
+        <button type="button" class="sidebar-nav-item settings-item" id="btnOpenSettings">
+          <span class="item-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </span>
+          <span class="item-label">Settings</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Shell Right Main Section -->
+    <div class="shell-right-area">
+      
+      <!-- Top Header -->
+      <header class="shell-header" id="shellHeader">
+        <div class="header-left">
+          
+          <!-- Mobile Hamburger Toggle -->
+          <button type="button" class="btn-mobile-menu" id="btnToggleMobileSidebar" aria-label="Toggle navigation drawer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+
+          <!-- Current Investigation Dossier Pill -->
+          <div class="investigation-meta-group">
+            <div class="meta-brand-badge" id="headerBrandBadge">Makeprd</div>
+            <div class="meta-location-tag" id="headerLocationTag">Chennai, Tamil Nadu</div>
+            <a href="https://makeprd.com" target="_blank" rel="noopener noreferrer" class="meta-website-link" id="headerWebsiteLink">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+              <span id="headerWebsiteText">makeprd.com</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="header-right">
+          
+          <!-- DEMO MODE Indicator -->
+          <div class="demo-mode-badge" title="Evidence-based demonstration active">
+            <span class="demo-dot"></span>
+            <span>DEMO MODE</span>
+          </div>
+
+          <!-- Theme Status Pill -->
+          <div class="theme-control-badge" title="Restrained Analytical Dark Palette Active">
+            <span class="theme-indicator-dot"></span>
+            <span>Dark Theme</span>
+          </div>
+
+          <!-- Operator Profile Pill -->
+          <div class="profile-control-badge" title="Active Investigation Operator">
+            <div class="profile-avatar">AN</div>
+            <span class="profile-role">Analyst</span>
+          </div>
+
+          <!-- Primary Header Action -->
+          <button type="button" class="btn-header-primary" id="btnHeaderNewInvestigation">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>New Investigation</span>
+          </button>
+
+        </div>
+      </header>
+
+      <!-- Subnavigation Segmented Control (Overview, Search, Maps, News) -->
+      <nav class="report-segmented-bar" id="reportSegmentedBar" aria-label="Report source navigation">
+        <div class="segmented-track" id="segmentedTrack">
+          <button type="button" class="segment-tab active" data-view="overview" id="segTabOverview">
+            <span>Overview</span>
+          </button>
+          <button type="button" class="segment-tab" data-view="search" id="segTabSearch">
+            <span>Search</span>
+            <span class="segment-count" id="segCountSearch">14</span>
+          </button>
+          <button type="button" class="segment-tab" data-view="maps" id="segTabMaps">
+            <span>Maps</span>
+            <span class="segment-count" id="segCountMaps">3</span>
+          </button>
+          <button type="button" class="segment-tab" data-view="news" id="segTabNews">
+            <span>News</span>
+            <span class="segment-count" id="segCountNews">3</span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Main Shell Content Container holding Views 3 to 7 -->
+      <main class="shell-main-content" id="shellMainContent">
+        
+        <!-- ===================================================================
+             SCREEN 3: INVESTIGATION OVERVIEW
+             =================================================================== -->
+        <div class="internal-view-panel active" id="viewOverview" data-view-name="overview">
+          
+          <!-- Report Header Area -->
+          <div class="report-main-header">
+            <div class="report-title-group">
+              <div class="report-kicker">INVESTIGATION DOSSIER</div>
+              <h1 class="report-headline">Investigation Report</h1>
+              <div class="report-metadata-row">
+                <span class="meta-item"><strong>Brand:</strong> <span id="ovBrandName">Makeprd</span></span>
+                <span class="meta-sep">,</span>
+                <span class="meta-item"><strong>Location:</strong> <span id="ovLocation">Chennai, Tamil Nadu</span></span>
+                <span class="meta-sep">,</span>
+                <span class="meta-item"><strong>Owner Website:</strong> <a href="https://makeprd.com" target="_blank" rel="noopener noreferrer" class="link-inline" id="ovWebsiteLink"><span id="ovWebsite">https://makeprd.com</span></a></span>
+                <span class="meta-sep">,</span>
+                <span class="meta-badge-text">Investigated using Google Search, Maps, and News</span>
+              </div>
+            </div>
+
+            <div class="report-actions-group">
+              <button type="button" class="btn-report-secondary" id="btnExportReport">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Export Report</span>
+              </button>
+              <button type="button" class="btn-report-primary" id="btnOverviewNewInvestigation">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>New Investigation</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- High-Priority Overall Brand Signal Section -->
+          <section class="overall-signal-card" id="overallSignalCard">
+            <div class="signal-card-header">
+              <div class="signal-heading-group">
+                <span class="section-kicker">CROSS-SOURCE VERIFICATION</span>
+                <h2 class="signal-section-title">Overall Brand Signal</h2>
+              </div>
+              <div class="signal-status-pill signal-confirmed" id="ovOverallSignalBadge">
+                CONFIRMED
+              </div>
+            </div>
+            
+            <p class="signal-explanation-text" id="ovOverallSignalExplanation">
+              Available results show a consistent online presence for the investigated brand. No meaningful anomaly was confirmed across the reviewed sources.
+            </p>
+          </section>
+
+          <!-- Source Summaries (Search, Maps, News) -->
+          <section class="sources-summary-grid" aria-label="Source Summary Findings">
+            
+            <!-- Source 1: Search -->
+            <div class="source-summary-card" id="cardSummarySearch">
+              <div class="summary-card-top">
+                <div class="summary-source-identity">
+                  <div class="source-mini-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  </div>
+                  <h3 class="summary-source-name">Google Search</h3>
+                </div>
+                <span class="status-pill status-positive" id="ovSearchSignal">Positive</span>
+              </div>
+              <p class="summary-card-text" id="ovSearchExplanation">
+                Owner domain identified in organic results at position #2. No concerning sponsored advertisements observed.
+              </p>
+              <button type="button" class="btn-card-inspect" data-target-view="search">
+                <span>View Search Evidence</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+
+            <!-- Source 2: Maps -->
+            <div class="source-summary-card" id="cardSummaryMaps">
+              <div class="summary-card-top">
+                <div class="summary-source-identity">
+                  <div class="source-mini-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </div>
+                  <h3 class="summary-source-name">Google Maps</h3>
+                </div>
+                <span class="status-pill status-positive" id="ovMapsSignal">Positive</span>
+              </div>
+              <p class="summary-card-text" id="ovMapsExplanation">
+                Relevant local listings found in Chennai IT corridors matching verified business categories.
+              </p>
+              <button type="button" class="btn-card-inspect" data-target-view="maps">
+                <span>View Maps Evidence</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+
+            <!-- Source 3: News -->
+            <div class="source-summary-card" id="cardSummaryNews">
+              <div class="summary-card-top">
+                <div class="summary-source-identity">
+                  <div class="source-mini-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+                  </div>
+                  <h3 class="summary-source-name">Google News</h3>
+                </div>
+                <span class="status-pill status-positive" id="ovNewsSignal">Positive</span>
+              </div>
+              <p class="summary-card-text" id="ovNewsExplanation">
+                Recent editorial coverage covers engineering expansion and regional industry participation.
+              </p>
+              <button type="button" class="btn-card-inspect" data-target-view="news">
+                <span>View News Evidence</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+
+          </section>
+
+          <!-- Key Findings Section -->
+          <section class="key-findings-section" aria-label="Key Findings">
+            <div class="section-title-wrap">
+              <span class="section-kicker">EVIDENCE BREAKDOWN</span>
+              <h2 class="section-title-dark">Key Findings</h2>
+            </div>
+
+            <div class="findings-grid" id="ovKeyFindingsGrid">
+              <!-- Dynamically populated key findings -->
+            </div>
+          </section>
+
+          <!-- Executive Summary Section -->
+          <section class="executive-summary-section" aria-label="Executive Summary">
+            <div class="section-title-wrap">
+              <span class="section-kicker">SYNTHESIS</span>
+              <h2 class="section-title-dark">Executive Summary</h2>
+            </div>
+
+            <div class="executive-summary-card">
+              <p class="executive-summary-paragraph" id="ovExecutiveSummaryText">
+                Investigation across Google Search, Google Maps, and Google News shows an established search presence for Makeprd based in Chennai, Tamil Nadu. The owner website appears in top organic placements, verified local business listings correspond with official location records, and press coverage reflects standard company milestones without conflicting brand signals.
+              </p>
+            </div>
+          </section>
+
+        </div>
+
+
+        <!-- ===================================================================
+             SCREEN 4: GOOGLE SEARCH
+             =================================================================== -->
+        <div class="internal-view-panel" id="viewSearch" data-view-name="search">
+          
+          <!-- Page Header -->
+          <div class="source-view-header">
+            <div>
+              <div class="page-kicker">SOURCE EVIDENCE 01</div>
+              <h1 class="page-headline">Google Search</h1>
+              <p class="page-subtext">Organic results and advertisements for the investigated brand.</p>
+            </div>
+            <div class="source-signal-badge-group">
+              <span class="badge-label">SEARCH SIGNAL</span>
+              <span class="status-pill status-positive" id="searchSourceSignalBadge">Positive</span>
+            </div>
+          </div>
+
+          <!-- Owner Website Card -->
+          <section class="owner-website-panel" id="searchOwnerPanel">
+            <div class="owner-panel-top">
+              <div class="owner-badge-title">
+                <span class="owner-indicator-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </span>
+                <span class="owner-title-text">Owner Website Status</span>
+              </div>
+              <span class="status-pill status-positive" id="searchOwnerStatusPill">Found</span>
+            </div>
+
+            <div class="owner-panel-details">
+              <div class="owner-domain-position">
+                <span class="domain-text" id="searchOwnerDomain">makeprd.com</span>
+                <span class="position-badge" id="searchOwnerPosition">Position #2</span>
+              </div>
+              <p class="owner-note-text" id="searchOwnerExplanation">
+                Owner domain is cataloged in primary organic placements. Position #1 is not required for verified standing.
+              </p>
+            </div>
+          </section>
+
+          <!-- Organic Results Section -->
+          <section class="results-table-section">
+            <div class="section-title-wrap">
+              <span class="section-kicker">PUBLIC PLACEMENTS</span>
+              <h2 class="section-title-dark">Organic Results</h2>
+            </div>
+
+            <div class="organic-results-container" id="searchOrganicContainer">
+              <!-- Dynamically populated organic results -->
+            </div>
+          </section>
+
+          <!-- Advertisements Section -->
+          <section class="ads-section">
+            <div class="section-title-wrap">
+              <span class="section-kicker">COMMERCIAL SIGNALS</span>
+              <h2 class="section-title-dark">Advertisements</h2>
+            </div>
+
+            <div class="ads-container" id="searchAdsContainer">
+              <!-- Dynamically populated ads or empty state -->
+            </div>
+          </section>
+
+          <!-- Mentioned Brands and Potential Competitors (Neutral Language) -->
+          <div class="two-column-neutral-grid">
+            
+            <!-- Mentioned Brands -->
+            <section class="neutral-box">
+              <div class="neutral-box-header">
+                <h3 class="neutral-box-title">Mentioned Brands</h3>
+                <span class="neutral-helper">Observed in search context</span>
+              </div>
+              <p class="neutral-box-desc">
+                Names cataloged within organic citations and regional listings. Mentioned status does not imply competitive rivalry.
+              </p>
+              <div class="tags-cluster" id="searchMentionedBrandsCluster">
+                <!-- Mentioned brands chips -->
+              </div>
+            </section>
+
+            <!-- Potential Competitors -->
+            <section class="neutral-box">
+              <div class="neutral-box-header">
+                <h3 class="neutral-box-title">Potential Competitors</h3>
+                <span class="neutral-helper">Contextual evidence</span>
+              </div>
+              <p class="neutral-box-desc">
+                Entities appearing in adjacent industry classifications or directory placements. Potential competitor status does not imply wrongdoing.
+              </p>
+              <div class="competitors-list" id="searchPotentialCompetitorsList">
+                <!-- Potential competitors cards -->
+              </div>
+            </section>
+
+          </div>
+
+        </div>
+
+
+        <!-- ===================================================================
+             SCREEN 5: GOOGLE MAPS
+             =================================================================== -->
+        <div class="internal-view-panel" id="viewMaps" data-view-name="maps">
+          
+          <!-- Page Header -->
+          <div class="source-view-header">
+            <div>
+              <div class="page-kicker">SOURCE EVIDENCE 02</div>
+              <h1 class="page-headline">Google Maps</h1>
+              <p class="page-subtext">Nearby business listings related to the investigated brand.</p>
+            </div>
+            <div class="source-signal-badge-group">
+              <span class="badge-label">MAPS SIGNAL</span>
+              <span class="status-pill status-positive" id="mapsSourceSignalBadge">Positive</span>
+            </div>
+          </div>
+
+          <!-- Maps Findings Summary Box -->
+          <div class="findings-summary-box" id="mapsFindingsBox">
+            <div class="box-icon-cell">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="box-content-cell">
+              <h3 class="box-heading">Maps Findings</h3>
+              <p class="box-text" id="mapsFindingsSummary">
+                Relevant nearby listings were found. One listing has similar naming and should be reviewed in context.
+              </p>
+            </div>
+          </div>
+
+          <!-- Two-Column Desktop Layout (Listings on one side, Visual Map on the other) -->
+          <div class="maps-two-column-layout">
+            
+            <!-- Left Side: Listings -->
+            <div class="maps-listings-column">
+              <div class="column-header-row">
+                <h3 class="column-subhead">Nearby Business Listings</h3>
+                <span class="count-tag" id="mapsListingCount">3 listings</span>
+              </div>
+              
+              <div class="listings-vertical-stack" id="mapsListingsContainer">
+                <!-- Dynamically populated listing cards -->
+              </div>
+            </div>
+
+            <!-- Right Side: Lightweight Vector Location Visualization -->
+            <div class="maps-visual-column">
+              <div class="column-header-row">
+                <h3 class="column-subhead">Geographic Presence Grid</h3>
+                <span class="coord-tag" id="mapsCoordTag">Chennai, TN</span>
+              </div>
+
+              <div class="lightweight-map-card" id="lightweightMapCard">
+                
+                <!-- Map Canvas / SVG Grid Container -->
+                <div class="map-viewport-grid" id="mapViewportGrid">
+                  
+                  <!-- Architectural Grid Background -->
+                  <div class="map-grid-mesh" aria-hidden="true"></div>
+                  
+                  <!-- Geographic Landform Outline Hint -->
+                  <div class="map-regional-boundary" aria-hidden="true"></div>
+
+                  <!-- Dynamic Pins Container -->
+                  <div class="map-pins-layer" id="mapPinsLayer">
+                    <!-- Pin elements generated dynamically -->
+                  </div>
+
+                  <!-- Map UI Controls Overlay -->
+                  <div class="map-overlay-controls">
+                    <button type="button" class="btn-map-zoom" id="btnZoomIn" aria-label="Zoom in map">+</button>
+                    <button type="button" class="btn-map-zoom" id="btnZoomOut" aria-label="Zoom out map">&minus;</button>
+                  </div>
+
+                  <div class="map-legend-overlay">
+                    <div class="legend-chip"><span class="legend-dot normal"></span><span>Normal Listing</span></div>
+                    <div class="legend-chip"><span class="legend-dot similar"></span><span>Similar Naming</span></div>
+                  </div>
+
+                </div>
+
+                <!-- Map Coordinates Metadata Strip -->
+                <div class="map-status-strip">
+                  <div class="strip-left">
+                    <span class="strip-label">TARGET MARKET:</span>
+                    <strong id="mapTargetMarketText">Chennai Metropolitan Area</strong>
+                  </div>
+                  <div class="strip-right">
+                    <span class="strip-coord">13.0827 N, 80.2707 E</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ===================================================================
+             SCREEN 6: GOOGLE NEWS
+             =================================================================== -->
+        <div class="internal-view-panel" id="viewNews" data-view-name="news">
+          
+          <!-- Page Header -->
+          <div class="source-view-header">
+            <div>
+              <div class="page-kicker">SOURCE EVIDENCE 03</div>
+              <h1 class="page-headline">Google News</h1>
+              <p class="page-subtext">Relevant coverage and context related to the investigated brand.</p>
+            </div>
+            <div class="source-signal-badge-group">
+              <span class="badge-label">NEWS SIGNAL</span>
+              <span class="status-pill status-positive" id="newsSourceSignalBadge">Positive</span>
+            </div>
+          </div>
+
+          <!-- News Findings Summary Box -->
+          <div class="findings-summary-box" id="newsFindingsBox">
+            <div class="box-icon-cell">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+            </div>
+            <div class="box-content-cell">
+              <h3 class="box-heading">News Findings</h3>
+              <p class="box-text" id="newsFindingsSummary">
+                Recent editorial coverage focuses on corporate expansion and technology leadership. No negative press signals identified.
+              </p>
+            </div>
+          </div>
+
+          <!-- Articles List Section -->
+          <section class="news-articles-section">
+            <div class="section-title-wrap">
+              <span class="section-kicker">PRESS AND EDITORIAL CITATIONS</span>
+              <h2 class="section-title-dark">News Articles</h2>
+            </div>
+
+            <div class="news-articles-container" id="newsArticlesContainer">
+              <!-- Dynamically populated articles or empty state -->
+            </div>
+          </section>
+
+        </div>
+
+
+        <!-- ===================================================================
+             SCREEN 7: REPORTS (PREVIOUS INVESTIGATIONS)
+             =================================================================== -->
+        <div class="internal-view-panel" id="viewReports" data-view-name="reports">
+          
+          <!-- Page Header -->
+          <div class="reports-view-header">
+            <div>
+              <div class="page-kicker">HISTORICAL DOSSIERS</div>
+              <h1 class="page-headline">Reports</h1>
+              <p class="page-subtext">Previous brand investigations.</p>
+            </div>
+            
+            <button type="button" class="btn-report-primary" id="btnReportsNewInvestigation">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>New Investigation</span>
+            </button>
+          </div>
+
+          <!-- Report Filter and Search Controls -->
+          <div class="reports-filter-bar">
+            
+            <!-- Search Input -->
+            <div class="report-search-field">
+              <span class="search-input-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </span>
+              <input 
+                type="text" 
+                id="inputReportSearch" 
+                class="report-search-input" 
+                placeholder="Search reports by brand or location..." 
+                aria-label="Search previous reports"
+              />
+            </div>
+
+            <!-- Signal Filter Tabs -->
+            <div class="report-signal-filters" id="reportSignalFilters">
+              <button type="button" class="btn-filter-tab active" data-filter="all">All</button>
+              <button type="button" class="btn-filter-tab" data-filter="CONFIRMED">Confirmed</button>
+              <button type="button" class="btn-filter-tab" data-filter="CONFLICTING">Conflicting</button>
+              <button type="button" class="btn-filter-tab" data-filter="UNKNOWN">Unknown</button>
+            </div>
+
+          </div>
+
+          <!-- Reports Table / Card List Container -->
+          <div class="reports-list-card">
+            
+            <!-- Table View on Desktop -->
+            <div class="reports-table-wrapper">
+              <table class="reports-data-table" id="reportsDataTable">
+                <thead>
+                  <tr>
+                    <th>Brand</th>
+                    <th>Location</th>
+                    <th>Overall Signal</th>
+                    <th>Date</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="reportsTableBody">
+                  <!-- Dynamically populated table rows -->
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ===================================================================
+             ERROR STATE VIEW: Investigation Could Not Be Completed
+             =================================================================== -->
+        <div class="internal-view-panel" id="viewError" data-view-name="error" style="display: none;">
+          <div class="error-state-card">
+            <div class="error-icon-cell">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <h2 class="error-headline">Investigation Could Not Be Completed</h2>
+            <p class="error-description">
+              Something went wrong while preparing the investigation. Public sources could not be queried or the request timed out.
+            </p>
+            <div class="error-actions">
+              <button type="button" class="btn-try-again" id="btnTryAgain">
+                <span>Try Again</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       SETTINGS MODAL (COMPACT ARCHITECTURAL DIALOG)
+       ========================================================================= -->
+  <div class="modal-backdrop" id="settingsModal" style="display: none;" aria-hidden="true">
+    <div class="settings-dialog-card" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-kicker">CONFIGURATION</span>
+          <h2 class="modal-title" id="settingsModalTitle">System Settings</h2>
+        </div>
+        <button type="button" class="btn-close-modal" id="btnCloseSettings" aria-label="Close settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="settings-group">
+          <label class="settings-group-label">INVESTIGATION PIPELINE</label>
+          <div class="settings-row">
+            <div>
+              <div class="setting-name">Locked Evidence Sources</div>
+              <div class="setting-desc">Google Search, Google Maps, and Google News exclusively.</div>
+            </div>
+            <span class="setting-value-badge">Enforced</span>
+          </div>
+
+          <div class="settings-row">
+            <div>
+              <div class="setting-name">Scoring Engine</div>
+              <div class="setting-desc">Zero numeric score policy. Only CONFIRMED, CONFLICTING, UNKNOWN.</div>
+            </div>
+            <span class="setting-value-badge">Enforced</span>
+          </div>
+
+          <div class="settings-row">
+            <div>
+              <div class="setting-name">Safety and Neutrality Filter</div>
+              <div class="setting-desc">Restrained terminology. No speculative wrongdoing accusations.</div>
+            </div>
+            <span class="setting-value-badge">Active</span>
+          </div>
+
+          <div class="settings-row">
+            <div>
+              <div class="setting-name">Data Layer Mode</div>
+              <div class="setting-desc">Structured mock layer ready for FastAPI SerpApi integration.</div>
+            </div>
+            <span class="setting-value-badge">Mock Mode</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-dismiss" id="btnDismissSettings">Done</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Scripts: Mock Data Layer First, Then Main Controller -->
+  <script src="js/mockData.js"></script>
   <script src="js/main.js"></script>
+
 </body>
 </html>
