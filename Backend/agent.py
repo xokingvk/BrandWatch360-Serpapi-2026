@@ -1,6 +1,17 @@
 import asyncio
 import json
+import sys
+import uuid
 from datetime import datetime, timezone
+from pathlib import Path
+
+# ============================================================
+# ENSURE BACKEND IS IN SYS.PATH
+# ============================================================
+
+backend_dir = Path(__file__).resolve().parent
+if str(backend_dir) not in sys.path:
+    sys.path.insert(0, str(backend_dir))
 
 from dotenv import load_dotenv
 
@@ -279,17 +290,20 @@ IMPORTANT:
 FINAL OUTPUT
 ------------------------------------------------------------
 
-Return:
-- search queries used
-- investigation location
-- owner website status
-- web search report
-- maps findings
-- news findings
-- anomaly_detected: true/false
-- explanation
-- source links
-- evidence
+Populate the output schema fields accurately:
+- search_queries: list of search query strings actually executed across the tools
+- investigation_location: the target location being investigated
+- owner_website_status: "Found", "Not found", or "Not provided"
+- organic_findings: clear summary of Google organic search findings
+- advertisement_findings: sponsored ads findings or "No ads found"
+- maps_findings: Google Maps location presence findings
+- news_findings: Google News coverage findings
+- anomaly_detected: boolean (true if meaningful search-presence anomaly, false otherwise)
+- overall_signal: "CONFIRMED" (if no anomaly), "CONFLICTING" (if anomaly detected), or "UNKNOWN" (if ambiguous)
+- executive_summary: 2-3 sentences executive summary synthesizing evidence from Google Search, Maps, and News
+- explanation: detailed objective analysis explaining facts vs interpretation
+- source_links: list of actual public URLs returned by the search tools
+- web_search_report: full readable report of the web search findings
 """,
     tools=[search_tool, maps_tool, news_tool],
     output_schema=BrandInvestigationResult,
@@ -302,7 +316,7 @@ Return:
 
 async def investigate_brand(runner, session_service, brand, state, website):
 
-    session_id = f"check_{state.replace(' ', '_')}"
+    session_id = f"check_{state.replace(' ', '_')}_{uuid.uuid4().hex[:8]}"
 
     await session_service.create_session(
         app_name="brandguard360",
@@ -334,37 +348,55 @@ async def investigate_brand(runner, session_service, brand, state, website):
                 if part.text:
                     output += part.text
 
-    print(f"\n{'=' * 50}")
-    print(f"{state}")
-    print(f"{'=' * 50}")
+    try:
+        print(f"\n{'=' * 50}")
+        print(f"{state}")
+        print(f"{'=' * 50}")
+    except Exception:
+        pass
+
+    clean_output = output.strip()
+    if clean_output.startswith("```json"):
+        clean_output = clean_output[7:]
+    elif clean_output.startswith("```"):
+        clean_output = clean_output[3:]
+    if clean_output.endswith("```"):
+        clean_output = clean_output[:-3]
+    clean_output = clean_output.strip()
 
     try:
-        result = json.loads(output)
+        result = json.loads(clean_output)
 
-        print("\nWEB SEARCH")
-        print("-" * 50)
-        print(result.get("web_search_report", "No web search report."))
+        try:
+            print("\nWEB SEARCH")
+            print("-" * 50)
+            print(result.get("web_search_report", "No web search report.").encode("ascii", errors="replace").decode("ascii"))
 
-        print("\nMAPS")
-        print("-" * 50)
-        print(result.get("maps_findings", "No Maps findings."))
+            print("\nMAPS")
+            print("-" * 50)
+            print(result.get("maps_findings", "No Maps findings.").encode("ascii", errors="replace").decode("ascii"))
 
-        print("\nNEWS")
-        print("-" * 50)
-        print(result.get("news_findings", "No News findings."))
+            print("\nNEWS")
+            print("-" * 50)
+            print(result.get("news_findings", "No News findings.").encode("ascii", errors="replace").decode("ascii"))
 
-        print("\nFINAL ANALYSIS")
-        print("-" * 50)
-        print(f"Anomaly Detected: {result.get('anomaly_detected')}")
-        print(f"\nExplanation:\n{result.get('explanation', '')}")
+            print("\nFINAL ANALYSIS")
+            print("-" * 50)
+            print(f"Anomaly Detected: {result.get('anomaly_detected')}")
+            print(f"\nExplanation:\n{result.get('explanation', '').encode('ascii', errors='replace').decode('ascii')}")
 
-        print("\nSources")
-        print("-" * 50)
-        for source in result.get("source_links", []):
-            print(source)
+            print("\nSources")
+            print("-" * 50)
+            for source in result.get("source_links", []):
+                print(str(source).encode("ascii", errors="replace").decode("ascii"))
+        except Exception:
+            pass
 
-    except json.JSONDecodeError:
-        print(output)
+        return result
+
+    except json.JSONDecodeError as err:
+        print(f"JSONDecodeError: {err}\nRaw output:\n{output[:500]}")
+        raise ValueError(f"Agent failed to return valid JSON: {err}") from err
 
 
 # ============================================================
@@ -381,11 +413,11 @@ async def run_test():
         session_service=session_service
     )
 
-    brand = "Makeprd"
-    state = "tamilnadu, india"
-    website = "https://www.makeprd.io/"
+    brand = "Google"
+    state = "Chennai, Tamil Nadu"
+    website = "https://www.google.com"
 
-    await investigate_brand(
+    return await investigate_brand(
         runner,
         session_service,
         brand,

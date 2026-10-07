@@ -223,8 +223,8 @@
               <div class="feedback-body">
                 <div class="target-summary">
                   <span class="target-label">Target:</span>
-                  <strong id="feedbackTargetBrand">Makeprd</strong>,
-                  <span id="feedbackTargetLocation">Chennai, Tamil Nadu</span>
+                  <strong id="feedbackTargetBrand"></strong>
+                  <span id="feedbackTargetLocation"></span>
                 </div>
 
                 <div class="evidence-pipeline-steps">
@@ -414,8 +414,8 @@
       <div class="loading-header">
         <div class="loading-brand-pill">
           <span class="pulse-indicator"></span>
-          <span id="loadingBrandTarget">Makeprd</span>
-          <span class="target-location-tag" id="loadingLocationTarget">Chennai, Tamil Nadu</span>
+          <span id="loadingBrandTarget"></span>
+          <span class="target-location-tag" id="loadingLocationTarget"></span>
         </div>
         <h1 class="loading-title">Investigating Your Brand</h1>
         <p class="loading-subtitle">Checking your brand across Google Search, Maps, and News.</p>
@@ -565,7 +565,7 @@
               </svg>
             </span>
             <span class="item-label">Search</span>
-            <span class="item-badge" id="sideBadgeSearch">14</span>
+            <span class="item-badge" id="sideBadgeSearch" style="display: none;"></span>
           </button>
 
           <button type="button" class="sidebar-nav-item" id="sideNavMaps" data-view="maps">
@@ -576,7 +576,7 @@
               </svg>
             </span>
             <span class="item-label">Maps</span>
-            <span class="item-badge" id="sideBadgeMaps">3</span>
+            <span class="item-badge" id="sideBadgeMaps" style="display: none;"></span>
           </button>
 
           <button type="button" class="sidebar-nav-item" id="sideNavNews" data-view="news">
@@ -589,7 +589,7 @@
               </svg>
             </span>
             <span class="item-label">News</span>
-            <span class="item-badge" id="sideBadgeNews">3</span>
+            <span class="item-badge" id="sideBadgeNews" style="display: none;"></span>
           </button>
 
           <div class="nav-section-label" style="margin-top: 18px;">HISTORY</div>
@@ -642,14 +642,14 @@
 
           <!-- Current Investigation Dossier Pill -->
           <div class="investigation-meta-group">
-            <div class="meta-brand-badge" id="headerBrandBadge">Makeprd</div>
-            <div class="meta-location-tag" id="headerLocationTag">Chennai, Tamil Nadu</div>
-            <a href="https://makeprd.com" target="_blank" rel="noopener noreferrer" class="meta-website-link" id="headerWebsiteLink">
+            <div class="meta-brand-badge" id="headerBrandBadge"></div>
+            <div class="meta-location-tag" id="headerLocationTag"></div>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="meta-website-link" id="headerWebsiteLink" style="display: none;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/>
                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
               </svg>
-              <span id="headerWebsiteText">makeprd.com</span>
+              <span id="headerWebsiteText"></span>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                 <polyline points="15 3 21 3 21 9"></polyline>
@@ -662,10 +662,10 @@
 
         <div class="header-right">
           
-          <!-- DEMO MODE Indicator -->
-          <div class="demo-mode-badge" title="Evidence-based demonstration active">
+          <!-- LIVE API Indicator -->
+          <div class="demo-mode-badge" title="Live FastAPI Investigation Active">
             <span class="demo-dot"></span>
-            <span>DEMO MODE</span>
+            <span>LIVE API</span>
           </div>
 
           <!-- Theme Status Pill -->
@@ -700,15 +700,15 @@
           </button>
           <button type="button" class="segment-tab" data-view="search" id="segTabSearch">
             <span>Search</span>
-            <span class="segment-count" id="segCountSearch">14</span>
+            <span class="segment-count" id="segCountSearch" style="display: none;"></span>
           </button>
           <button type="button" class="segment-tab" data-view="maps" id="segTabMaps">
             <span>Maps</span>
-            <span class="segment-count" id="segCountMaps">3</span>
+            <span class="segment-count" id="segCountMaps" style="display: none;"></span>
           </button>
           <button type="button" class="segment-tab" data-view="news" id="segTabNews">
             <span>News</span>
-            <span class="segment-count" id="segCountNews">3</span>
+            <span class="segment-count" id="segCountNews" style="display: none;"></span>
           </button>
         </div>
       </nav>
@@ -727,11 +727,11 @@
               <div class="report-kicker">INVESTIGATION DOSSIER</div>
               <h1 class="report-headline">Investigation Report</h1>
               <div class="report-metadata-row">
-                <span class="meta-item"><strong>Brand:</strong> <span id="ovBrandName">Makeprd</span></span>
+                <span class="meta-item"><strong>Brand:</strong> <span id="ovBrandName"></span></span>
                 <span class="meta-sep">,</span>
-                <span class="meta-item"><strong>Location:</strong> <span id="ovLocation">Chennai, Tamil Nadu</span></span>
-                <span class="meta-sep">,</span>
-                <span class="meta-item"><strong>Owner Website:</strong> <a href="https://makeprd.com" target="_blank" rel="noopener noreferrer" class="link-inline" id="ovWebsiteLink"><span id="ovWebsite">https://makeprd.com</span></a></span>
+                <span class="meta-item"><strong>Location:</strong> <span id="ovLocation"></span></span>
+                <span class="meta-sep" id="ovWebsiteSep" style="display: none;">,</span>
+                <span class="meta-item" id="ovWebsiteItem" style="display: none;"><strong>Owner Website:</strong> <a href="#" target="_blank" rel="noopener noreferrer" class="link-inline" id="ovWebsiteLink"><span id="ovWebsite"></span></a></span>
                 <span class="meta-sep">,</span>
                 <span class="meta-badge-text">Investigated using Google Search, Maps, and News</span>
               </div>
@@ -763,13 +763,11 @@
                 <span class="section-kicker">CROSS-SOURCE VERIFICATION</span>
                 <h2 class="signal-section-title">Overall Brand Signal</h2>
               </div>
-              <div class="signal-status-pill signal-confirmed" id="ovOverallSignalBadge">
-                CONFIRMED
+              <div class="signal-status-pill" id="ovOverallSignalBadge">
               </div>
             </div>
             
             <p class="signal-explanation-text" id="ovOverallSignalExplanation">
-              Available results show a consistent online presence for the investigated brand. No meaningful anomaly was confirmed across the reviewed sources.
             </p>
           </section>
 
@@ -785,11 +783,9 @@
                   </div>
                   <h3 class="summary-source-name">Google Search</h3>
                 </div>
-                <span class="status-pill status-positive" id="ovSearchSignal">Positive</span>
+                <span class="status-pill status-positive" id="ovSearchSignal"></span>
               </div>
-              <p class="summary-card-text" id="ovSearchExplanation">
-                Owner domain identified in organic results at position #2. No concerning sponsored advertisements observed.
-              </p>
+              <p class="summary-card-text" id="ovSearchExplanation"></p>
               <button type="button" class="btn-card-inspect" data-target-view="search">
                 <span>View Search Evidence</span>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -805,11 +801,9 @@
                   </div>
                   <h3 class="summary-source-name">Google Maps</h3>
                 </div>
-                <span class="status-pill status-positive" id="ovMapsSignal">Positive</span>
+                <span class="status-pill status-positive" id="ovMapsSignal"></span>
               </div>
-              <p class="summary-card-text" id="ovMapsExplanation">
-                Relevant local listings found in Chennai IT corridors matching verified business categories.
-              </p>
+              <p class="summary-card-text" id="ovMapsExplanation"></p>
               <button type="button" class="btn-card-inspect" data-target-view="maps">
                 <span>View Maps Evidence</span>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -825,11 +819,9 @@
                   </div>
                   <h3 class="summary-source-name">Google News</h3>
                 </div>
-                <span class="status-pill status-positive" id="ovNewsSignal">Positive</span>
+                <span class="status-pill status-positive" id="ovNewsSignal"></span>
               </div>
-              <p class="summary-card-text" id="ovNewsExplanation">
-                Recent editorial coverage covers engineering expansion and regional industry participation.
-              </p>
+              <p class="summary-card-text" id="ovNewsExplanation"></p>
               <button type="button" class="btn-card-inspect" data-target-view="news">
                 <span>View News Evidence</span>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -858,9 +850,7 @@
             </div>
 
             <div class="executive-summary-card">
-              <p class="executive-summary-paragraph" id="ovExecutiveSummaryText">
-                Investigation across Google Search, Google Maps, and Google News shows an established search presence for Makeprd based in Chennai, Tamil Nadu. The owner website appears in top organic placements, verified local business listings correspond with official location records, and press coverage reflects standard company milestones without conflicting brand signals.
-              </p>
+              <p class="executive-summary-paragraph" id="ovExecutiveSummaryText"></p>
             </div>
           </section>
 
@@ -881,7 +871,7 @@
             </div>
             <div class="source-signal-badge-group">
               <span class="badge-label">SEARCH SIGNAL</span>
-              <span class="status-pill status-positive" id="searchSourceSignalBadge">Positive</span>
+              <span class="status-pill status-positive" id="searchSourceSignalBadge"></span>
             </div>
           </div>
 
@@ -894,17 +884,26 @@
                 </span>
                 <span class="owner-title-text">Owner Website Status</span>
               </div>
-              <span class="status-pill status-positive" id="searchOwnerStatusPill">Found</span>
+              <span class="status-pill" id="searchOwnerStatusPill"></span>
             </div>
 
             <div class="owner-panel-details">
               <div class="owner-domain-position">
-                <span class="domain-text" id="searchOwnerDomain">makeprd.com</span>
-                <span class="position-badge" id="searchOwnerPosition">Position #2</span>
+                <span class="domain-text" id="searchOwnerDomain"></span>
+                <span class="position-badge" id="searchOwnerPosition" style="display: none;"></span>
               </div>
-              <p class="owner-note-text" id="searchOwnerExplanation">
-                Owner domain is cataloged in primary organic placements. Position #1 is not required for verified standing.
-              </p>
+              <p class="owner-note-text" id="searchOwnerExplanation"></p>
+            </div>
+          </section>
+
+          <!-- Search Queries Section (Driven by response.search_queries) -->
+          <section class="search-queries-section" id="searchQueriesSection" style="display: none; margin-bottom: 24px;">
+            <div class="section-title-wrap">
+              <span class="section-kicker">INVESTIGATION SCOPE</span>
+              <h2 class="section-title-dark">Search Queries</h2>
+            </div>
+            <div class="tags-cluster" id="searchQueriesContainer" style="margin-top: 10px;">
+              <!-- Dynamically populated from response.search_queries -->
             </div>
           </section>
 
@@ -982,7 +981,7 @@
             </div>
             <div class="source-signal-badge-group">
               <span class="badge-label">MAPS SIGNAL</span>
-              <span class="status-pill status-positive" id="mapsSourceSignalBadge">Positive</span>
+              <span class="status-pill status-positive" id="mapsSourceSignalBadge"></span>
             </div>
           </div>
 
@@ -993,9 +992,7 @@
             </div>
             <div class="box-content-cell">
               <h3 class="box-heading">Maps Findings</h3>
-              <p class="box-text" id="mapsFindingsSummary">
-                Relevant nearby listings were found. One listing has similar naming and should be reviewed in context.
-              </p>
+              <p class="box-text" id="mapsFindingsSummary"></p>
             </div>
           </div>
 
@@ -1006,7 +1003,7 @@
             <div class="maps-listings-column">
               <div class="column-header-row">
                 <h3 class="column-subhead">Nearby Business Listings</h3>
-                <span class="count-tag" id="mapsListingCount">3 listings</span>
+                <span class="count-tag" id="mapsListingCount" style="display: none;"></span>
               </div>
               
               <div class="listings-vertical-stack" id="mapsListingsContainer">
@@ -1018,7 +1015,7 @@
             <div class="maps-visual-column">
               <div class="column-header-row">
                 <h3 class="column-subhead">Geographic Presence Grid</h3>
-                <span class="coord-tag" id="mapsCoordTag">Chennai, TN</span>
+                <span class="coord-tag" id="mapsCoordTag"></span>
               </div>
 
               <div class="lightweight-map-card" id="lightweightMapCard">
@@ -1054,10 +1051,10 @@
                 <div class="map-status-strip">
                   <div class="strip-left">
                     <span class="strip-label">TARGET MARKET:</span>
-                    <strong id="mapTargetMarketText">Chennai Metropolitan Area</strong>
+                    <strong id="mapTargetMarketText"></strong>
                   </div>
                   <div class="strip-right">
-                    <span class="strip-coord">13.0827 N, 80.2707 E</span>
+                    <span class="strip-coord"></span>
                   </div>
                 </div>
 
@@ -1083,7 +1080,7 @@
             </div>
             <div class="source-signal-badge-group">
               <span class="badge-label">NEWS SIGNAL</span>
-              <span class="status-pill status-positive" id="newsSourceSignalBadge">Positive</span>
+              <span class="status-pill status-positive" id="newsSourceSignalBadge"></span>
             </div>
           </div>
 
@@ -1094,9 +1091,7 @@
             </div>
             <div class="box-content-cell">
               <h3 class="box-heading">News Findings</h3>
-              <p class="box-text" id="newsFindingsSummary">
-                Recent editorial coverage focuses on corporate expansion and technology leadership. No negative press signals identified.
-              </p>
+              <p class="box-text" id="newsFindingsSummary"></p>
             </div>
           </div>
 
@@ -1264,9 +1259,9 @@
           <div class="settings-row">
             <div>
               <div class="setting-name">Data Layer Mode</div>
-              <div class="setting-desc">Structured mock layer ready for FastAPI SerpApi integration.</div>
+              <div class="setting-desc">Live FastAPI backend integration with Google ADK, SerpApi, and Gemini.</div>
             </div>
-            <span class="setting-value-badge">Mock Mode</span>
+            <span class="setting-value-badge">Live API</span>
           </div>
         </div>
       </div>
@@ -1278,9 +1273,8 @@
   </div>
 
 
-  <!-- Scripts: Mock Data Layer First, Then Main Controller -->
-  <script src="js/mockData.js"></script>
+  <!-- Scripts: jsPDF Engine and Main Application Controller -->
+  <script src="js/jspdf.umd.min.js"></script>
   <script src="js/main.js"></script>
-
 </body>
 </html>
