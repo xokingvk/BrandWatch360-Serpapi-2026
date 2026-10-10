@@ -26,45 +26,71 @@
    -------------------------------------------------------------------------- */
 :root {
   /* Core Exact Color Palette */
-  --bg-main: #040514;                 /* Main app background */
-  --bg-secondary: #080A14;            /* Secondary background, sidebar, header */
-  --bg-card: #10111B;                 /* Primary panel / card */
-  --bg-card-hover: #151827;           /* Card hover state */
-  --bg-card-elevated: #1D2033;        /* Elevated panel / dropdown / tooltips */
-  --border-subtle: #2A2D3D;           /* Subtle border */
-  --border-hover: #3E4359;            /* Hover border */
+  --bg-main: #040514;
+  /* Main app background */
+  --bg-secondary: #080A14;
+  /* Secondary background, sidebar, header */
+  --bg-card: #10111B;
+  /* Primary panel / card */
+  --bg-card-hover: #151827;
+  /* Card hover state */
+  --bg-card-elevated: #1D2033;
+  /* Elevated panel / dropdown / tooltips */
+  --border-subtle: #2A2D3D;
+  /* Subtle border */
+  --border-hover: #3E4359;
+  /* Hover border */
 
   /* Text Colors */
-  --text-primary: #F4F5FA;            /* Primary text */
-  --text-secondary: #B8BBC8;          /* Secondary text */
-  --text-muted: #777B8C;              /* Muted text / helper text / placeholders */
+  --text-primary: #F4F5FA;
+  /* Primary text */
+  --text-secondary: #B8BBC8;
+  /* Secondary text */
+  --text-muted: #777B8C;
+  /* Muted text / helper text / placeholders */
 
   /* Accents */
-  --accent-primary: #3E5FE7;          /* Primary accent (restrained electric blue) */
-  --accent-primary-hover: #4C6DF0;    /* Hover blue */
-  --accent-secondary-blue: #1C2D6E;   /* Secondary blue for subtle active backgrounds */
-  --accent-link: #7A91EA;             /* Muted blue link */
-  --accent-active: #F4F5FA;           /* Active navigation text */
+  --accent-primary: #3E5FE7;
+  /* Primary accent (restrained electric blue) */
+  --accent-primary-hover: #4C6DF0;
+  /* Hover blue */
+  --accent-secondary-blue: #1C2D6E;
+  /* Secondary blue for subtle active backgrounds */
+  --accent-link: #7A91EA;
+  /* Muted blue link */
+  --accent-active: #F4F5FA;
+  /* Active navigation text */
 
   /* Semantic Status Colors (No numeric scores) */
-  --status-positive: #5FA878;         /* Positive / Confirmed (restrained green) */
+  --status-positive: #5FA878;
+  /* Positive / Confirmed (restrained green) */
   --status-positive-bg: rgba(95, 168, 120, 0.12);
-  --status-warning: #C39A55;          /* Warning / Conflicting (muted amber) */
+  --status-warning: #C39A55;
+  /* Warning / Conflicting (muted amber) */
   --status-warning-bg: rgba(195, 154, 85, 0.12);
-  --status-concerning: #C66F68;       /* Concerning (muted soft red) */
+  --status-concerning: #C66F68;
+  /* Concerning (muted soft red) */
   --status-concerning-bg: rgba(198, 111, 104, 0.12);
-  --status-unknown: #858998;          /* Unknown (muted cool gray) */
+  --status-unknown: #858998;
+  /* Unknown (muted cool gray) */
   --status-unknown-bg: rgba(133, 137, 152, 0.12);
 
   /* Buttons */
-  --btn-primary-bg: #3E5FE7;          /* Primary button blue */
-  --btn-primary-hover: #4C6DF0;       /* Slightly lighter blue */
-  --btn-primary-text: #FFFFFF;        /* Pure white */
+  --btn-primary-bg: #3E5FE7;
+  /* Primary button blue */
+  --btn-primary-hover: #4C6DF0;
+  /* Slightly lighter blue */
+  --btn-primary-text: #FFFFFF;
+  /* Pure white */
 
-  --btn-secondary-bg: #10111B;        /* Secondary button surface */
-  --btn-secondary-hover: #1D2033;     /* Hover surface */
-  --btn-secondary-border: #2A2D3D;    /* Subtle border */
-  --btn-secondary-text: #F4F5FA;      /* Primary text */
+  --btn-secondary-bg: #10111B;
+  /* Secondary button surface */
+  --btn-secondary-hover: #1D2033;
+  /* Hover surface */
+  --btn-secondary-border: #2A2D3D;
+  /* Subtle border */
+  --btn-secondary-text: #F4F5FA;
+  /* Primary text */
 
   /* Chart Theme Variables (Exact Reference Language) */
   --chart-bg: #080A14;
@@ -153,7 +179,9 @@
 /* --------------------------------------------------------------------------
    2. Reset & Base Elements
    -------------------------------------------------------------------------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -182,7 +210,9 @@ body {
   outline-offset: 2px;
 }
 
-button, input, a {
+button,
+input,
+a {
   font-family: inherit;
 }
 
@@ -511,7 +541,8 @@ a {
 .input-wrapper:focus-within {
   border-color: var(--accent-primary);
   background-color: var(--bg-card);
-  box-shadow: none; /* No glow */
+  box-shadow: none;
+  /* No glow */
 }
 
 .input-wrapper.error {
@@ -606,8 +637,13 @@ a {
 }
 
 @keyframes spinRing {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .reassurance-text {
@@ -637,6 +673,7 @@ a {
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -670,9 +707,20 @@ a {
 }
 
 @keyframes pulseBeacon {
-  0% { transform: scale(0.9); opacity: 0.7; }
-  50% { transform: scale(1.3); opacity: 1; }
-  100% { transform: scale(0.9); opacity: 0.7; }
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
 }
 
 .btn-close-feedback {
@@ -1542,9 +1590,12 @@ a {
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  background-color: var(--bg-card); /* #10111B */
-  border: 1px solid var(--border-subtle); /* #2A2D3D */
-  color: var(--text-secondary); /* #B8BBC8 */
+  background-color: var(--bg-card);
+  /* #10111B */
+  border: 1px solid var(--border-subtle);
+  /* #2A2D3D */
+  color: var(--text-secondary);
+  /* #B8BBC8 */
   padding: 5px 10px;
   border-radius: var(--radius-full);
 }
@@ -1554,7 +1605,8 @@ a {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: var(--accent-primary); /* #3E5FE7 */
+  background-color: var(--accent-primary);
+  /* #3E5FE7 */
 }
 
 .profile-control-badge {
@@ -1686,11 +1738,20 @@ a {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.section-kicker, .page-kicker, .report-kicker {
+.section-kicker,
+.page-kicker,
+.report-kicker {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   font-weight: 700;
@@ -2089,6 +2150,14 @@ a {
   text-decoration: underline;
 }
 
+.btn-view-source.disabled {
+  color: var(--text-muted);
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  text-decoration: none;
+}
+
 .executive-summary-section {
   margin-bottom: 24px;
 }
@@ -2279,31 +2348,58 @@ a {
   margin-bottom: 32px;
 }
 
-.ads-container {
+.ads-container,
+.competitors-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
+}
+
+.competitors-section {
+  margin-bottom: 32px;
 }
 
 .ad-card-item {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-left: 3px solid var(--status-warning);
+  border-left: 3px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color var(--duration-fast);
+}
+
+.ad-card-item:hover {
+  border-color: var(--border-focus);
+}
+
+.ad-card-item.status-border-suspicious {
+  border-left: 3px solid var(--status-concerning);
+}
+
+.ad-card-item.status-border-clean {
+  border-left: 3px solid var(--status-positive);
+}
+
+.ad-card-item.status-border-insufficient {
+  border-left: 3px solid var(--border-subtle);
 }
 
 .ad-top-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .ad-identity {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .ad-sponsor-label {
@@ -2311,61 +2407,128 @@ a {
   font-size: 0.625rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  padding: 2px 6px;
+  padding: 2px 7px;
   border-radius: var(--radius-xs);
   background-color: var(--status-warning-bg);
   color: var(--status-warning);
 }
 
 .ad-advertiser-name {
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  font-weight: 650;
   color: var(--text-primary);
 }
 
-.ad-domain-text {
+.ad-domain-pill {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text-muted);
+  background-color: var(--bg-card-elevated);
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
 }
 
-.ad-copy-text {
+.ad-headline {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--accent-link);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.ad-description {
   font-size: 0.84375rem;
   color: var(--text-secondary);
-  margin-bottom: 10px;
   line-height: 1.5;
+  margin: 0;
 }
 
-.two-column-neutral-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+.ad-field-block {
+  background-color: var(--bg-card-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.neutral-box {
+.ad-field-row {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.ad-field-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-right: 6px;
+}
+
+.competitor-item-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 22px;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color var(--duration-fast);
 }
 
-.neutral-box-header {
+.competitor-item-card:hover {
+  border-color: var(--border-focus);
+}
+
+.competitor-item-card.status-border-suspicious {
+  border-left: 3px solid var(--status-concerning);
+}
+
+.competitor-item-card.status-border-clean {
+  border-left: 3px solid var(--status-positive);
+}
+
+.competitor-item-card.status-border-insufficient {
+  border-left: 3px solid var(--border-subtle);
+}
+
+.comp-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.neutral-box-title {
-  font-size: 0.9375rem;
+.comp-name {
+  font-size: 1rem;
+  font-weight: 650;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.comp-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: var(--bg-card-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 12px 14px;
+}
+
+.comp-field-row {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.comp-field-label {
   font-weight: 600;
   color: var(--text-primary);
-}
-
-.neutral-helper {
-  font-size: 0.6875rem;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
+  margin-right: 6px;
 }
 
 .neutral-box-desc {
@@ -2389,44 +2552,6 @@ a {
   color: var(--text-primary);
   padding: 4px 10px;
   border-radius: var(--radius-xs);
-}
-
-.competitors-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.competitor-item-card {
-  background-color: var(--bg-card-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xs);
-  padding: 12px 14px;
-}
-
-.comp-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 4px;
-}
-
-.comp-name {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.comp-domain {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  color: var(--accent-link);
-}
-
-.comp-note {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
 }
 
 /* --------------------------------------------------------------------------
@@ -2484,7 +2609,8 @@ a {
   color: var(--text-primary);
 }
 
-.count-tag, .coord-tag {
+.count-tag,
+.coord-tag {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   color: var(--text-muted);
@@ -2525,6 +2651,34 @@ a {
   font-size: 1rem;
   font-weight: 650;
   color: var(--text-primary);
+}
+
+.listing-name-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.listing-name-link:hover {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+.listing-name-link .listing-link-icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.875rem;
+  line-height: 1;
+  color: inherit;
+  transition: color 0.15s ease;
+}
+
+.listing-name-link:hover .listing-link-icon {
+  color: var(--accent-primary);
 }
 
 .naming-signal-tag {
@@ -2599,141 +2753,133 @@ a {
   color: var(--text-muted);
 }
 
-/* Lightweight Architectural Location Map */
-.lightweight-map-card {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  position: sticky;
-  top: 100px;
-}
-
-.map-viewport-grid {
-  height: 420px;
-  background-color: var(--bg-secondary);
-  position: relative;
-  overflow: hidden;
-}
-
-.map-grid-mesh {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(42, 45, 61, 0.45) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 45, 61, 0.45) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-.map-regional-boundary {
-  position: absolute;
-  inset: 15%;
-  border: 1px dashed rgba(62, 95, 231, 0.25);
-  border-radius: 40px;
-  pointer-events: none;
-}
-
-.map-pins-layer {
-  position: absolute;
-  inset: 0;
-}
-
-.map-marker-pin {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
+/* Location Context Column & Card (Information-first action panel) */
+.maps-context-column {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  transition: transform var(--transition-fast);
 }
 
-.map-marker-pin:hover {
-  transform: translate(-50%, -55%) scale(1.1);
-  z-index: 20;
-}
-
-.marker-point {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: var(--accent-primary);
-  border: 2px solid var(--border-subtle);
-  box-shadow: none;
-}
-
-.map-marker-pin.similar .marker-point {
-  background-color: var(--status-warning);
-  border: 2px solid var(--border-subtle);
-  box-shadow: none;
-}
-
-.marker-tooltip {
-  background-color: var(--bg-card-elevated);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: var(--radius-xs);
-  white-space: nowrap;
-  margin-top: 4px;
-  pointer-events: none;
-}
-
-.map-overlay-controls {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  z-index: 10;
-}
-
-.btn-map-zoom {
-  width: 28px;
-  height: 28px;
+.location-context-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.context-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.context-geo-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.context-geo-icon {
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-xs);
-  font-size: 1rem;
-  cursor: pointer;
+  background-color: var(--bg-card-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--accent-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color var(--transition-fast);
+  flex-shrink: 0;
 }
 
-.btn-map-zoom:hover {
-  background-color: var(--bg-card-elevated);
-}
-
-.map-legend-overlay {
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
+.context-geo-meta {
   display: flex;
-  gap: 8px;
-  background-color: rgba(8, 10, 20, 0.9);
-  padding: 4px 8px;
-  border-radius: var(--radius-xs);
-  border: 1px solid var(--border-subtle);
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.context-label-kicker {
+  font-family: var(--font-mono);
   font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.context-location-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.context-brand-row,
+.context-scope-row,
+.context-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+}
+
+.context-meta-label {
   color: var(--text-secondary);
 }
 
-.legend-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
+.context-brand-name {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
-.legend-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
+.context-scope-text {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.context-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 16px;
+}
+
+.btn-open-google-maps {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: var(--bg-card-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.btn-open-google-maps:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--accent-primary);
+  color: var(--accent-link);
+}
+
+.context-support-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin: 0;
+  text-align: center;
 }
 
 .legend-dot.normal {
@@ -3372,7 +3518,8 @@ a {
     width: 100%;
   }
 
-  .btn-report-secondary, .btn-report-primary {
+  .btn-report-secondary,
+  .btn-report-primary {
     flex: 1;
     justify-content: center;
   }

@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BrandGuard360 — AI-Powered Brand Search-Presence Investigation</title>
-  <meta name="description" content="BrandGuard360 investigates Google Search, Maps, and News to help you understand how your brand appears online with inspectable evidence.">
-  
+  <meta name="description"
+    content="BrandGuard360 investigates Google Search, Maps, and News to help you understand how your brand appears online with inspectable evidence.">
+
   <!-- Preconnect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
   <!-- =========================================================================
        SCREEN 1: HOME / NEW INVESTIGATION (PRESERVED EXACTLY AS COMPLETED)
        ========================================================================= -->
   <div class="app-layout" id="homePageWrapper">
-    
+
     <!-- Top Navigation -->
     <header class="top-nav" id="topNav">
       <div class="nav-container">
-        
+
         <!-- Brand Logo -->
         <a href="#home" class="brand-logo" id="brandLogo" aria-label="BrandGuard360 Home">
           <span class="logo-mark" aria-hidden="true">
             <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 1L2 4.5V10.2C2 15.3 5.4 20.1 10 21C14.6 20.1 18 15.3 18 10.2V4.5L10 1Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M7 10.5L9 12.5L13.5 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 1L2 4.5V10.2C2 15.3 5.4 20.1 10 21C14.6 20.1 18 15.3 18 10.2V4.5L10 1Z" stroke="currentColor"
+                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M7 10.5L9 12.5L13.5 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round" />
             </svg>
           </span>
           <span class="logo-text">
@@ -59,7 +66,7 @@
       <!-- Hero Section -->
       <section class="hero-section" id="home">
         <div class="content-container hero-inner">
-          
+
           <div class="eyebrow-pill" id="heroEyebrow">
             <span class="eyebrow-dot"></span>
             <span class="eyebrow-text">AI-POWERED BRAND INVESTIGATION</span>
@@ -70,7 +77,8 @@
           </h1>
 
           <p class="hero-subtext" id="heroSubtext">
-            BrandGuard360 investigates Google Search, Maps, and News to help you understand how your brand appears online — with evidence you can inspect.
+            BrandGuard360 investigates Google Search, Maps, and News to help you understand how your brand appears
+            online — with evidence you can inspect.
           </p>
 
         </div>
@@ -79,9 +87,9 @@
       <!-- Main Investigation Card Section -->
       <section class="investigation-section" id="investigate-card" aria-label="Brand Investigation Form">
         <div class="content-container">
-          
+
           <div class="investigation-card" id="investigationMainCard">
-            
+
             <div class="card-header">
               <div class="card-heading-group">
                 <span class="card-kicker">START AN INVESTIGATION</span>
@@ -91,9 +99,9 @@
 
             <!-- Investigation Form -->
             <form class="investigation-form" id="investigationForm" novalidate>
-              
+
               <div class="form-grid">
-                
+
                 <!-- Field 1: Brand Name -->
                 <div class="form-field-group" id="fieldBrandGroup">
                   <label for="inputBrandName" class="field-label">
@@ -103,27 +111,20 @@
                   <div class="input-wrapper">
                     <span class="field-icon" aria-hidden="true">
                       <!-- Building / Brand Icon -->
-                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 21h18"/>
-                        <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/>
-                        <path d="M9 9h1"/>
-                        <path d="M9 13h1"/>
-                        <path d="M9 17h1"/>
-                        <path d="M14 9h1"/>
-                        <path d="M14 13h1"/>
-                        <path d="M14 17h1"/>
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 21h18" />
+                        <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
+                        <path d="M9 9h1" />
+                        <path d="M9 13h1" />
+                        <path d="M9 17h1" />
+                        <path d="M14 9h1" />
+                        <path d="M14 13h1" />
+                        <path d="M14 17h1" />
                       </svg>
                     </span>
-                    <input 
-                      type="text" 
-                      id="inputBrandName" 
-                      name="brandName" 
-                      class="text-input" 
-                      placeholder="e.g. Google" 
-                      required 
-                      autocomplete="organization"
-                      spellcheck="false"
-                    />
+                    <input type="text" id="inputBrandName" name="brandName" class="text-input" placeholder="e.g. Google"
+                      required autocomplete="organization" spellcheck="false" />
                   </div>
                   <span class="field-validation-msg" id="brandError" aria-live="polite"></span>
                 </div>
@@ -137,21 +138,15 @@
                   <div class="input-wrapper">
                     <span class="field-icon" aria-hidden="true">
                       <!-- Location Pin Icon -->
-                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-                        <circle cx="12" cy="10" r="3"/>
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                        <circle cx="12" cy="10" r="3" />
                       </svg>
                     </span>
-                    <input 
-                      type="text" 
-                      id="inputLocation" 
-                      name="location" 
-                      class="text-input" 
-                      placeholder="e.g. Chennai, Tamil Nadu" 
-                      required 
-                      autocomplete="address-level2"
-                      spellcheck="false"
-                    />
+                    <input type="text" id="inputLocation" name="location" class="text-input"
+                      placeholder="e.g. Chennai, Tamil Nadu" required autocomplete="address-level2"
+                      spellcheck="false" />
                   </div>
                   <span class="field-validation-msg" id="locationError" aria-live="polite"></span>
                 </div>
@@ -164,21 +159,16 @@
                   <div class="input-wrapper">
                     <span class="field-icon" aria-hidden="true">
                       <!-- Globe / Link Icon -->
-                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                        <path d="M2 12h20"/>
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path
+                          d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                        <path d="M2 12h20" />
                       </svg>
                     </span>
-                    <input 
-                      type="url" 
-                      id="inputWebsite" 
-                      name="website" 
-                      class="text-input" 
-                      placeholder="e.g. https://example.com" 
-                      autocomplete="url"
-                      spellcheck="false"
-                    />
+                    <input type="url" id="inputWebsite" name="website" class="text-input"
+                      placeholder="e.g. https://example.com" autocomplete="url" spellcheck="false" />
                   </div>
                   <span class="field-validation-msg" id="websiteError" aria-live="polite"></span>
                 </div>
@@ -190,9 +180,10 @@
                 <button type="submit" class="btn-primary-investigate" id="btnInvestigateSubmit">
                   <span class="btn-icon" aria-hidden="true">
                     <!-- Clean Search Line Icon -->
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="11" cy="11" r="8"/>
-                      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
                     </svg>
                   </span>
                   <span class="btn-text">Investigate Brand</span>
@@ -219,7 +210,7 @@
                   </svg>
                 </button>
               </div>
-              
+
               <div class="feedback-body">
                 <div class="target-summary">
                   <span class="target-label">Target:</span>
@@ -230,33 +221,51 @@
                 <div class="evidence-pipeline-steps">
                   <div class="pipeline-step step-search active" id="pipelineSearch">
                     <div class="pipeline-step-icon">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                      </svg>
                     </div>
                     <div class="pipeline-step-info">
                       <div class="pipeline-step-title">Google Search</div>
-                      <div class="pipeline-step-status" id="statusSearchMsg">Collecting organic results and ad signals...</div>
+                      <div class="pipeline-step-status" id="statusSearchMsg">Collecting organic results and ad
+                        signals...</div>
                     </div>
                     <div class="pipeline-step-indicator" id="indicatorSearch">&#10003;</div>
                   </div>
 
                   <div class="pipeline-step step-maps" id="pipelineMaps">
                     <div class="pipeline-step-icon">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
                     </div>
                     <div class="pipeline-step-info">
                       <div class="pipeline-step-title">Google Maps</div>
-                      <div class="pipeline-step-status" id="statusMapsMsg">Checking verified listings and location signals...</div>
+                      <div class="pipeline-step-status" id="statusMapsMsg">Checking verified listings and location
+                        signals...</div>
                     </div>
                     <div class="pipeline-step-indicator" id="indicatorMaps">Pending</div>
                   </div>
 
                   <div class="pipeline-step step-news" id="pipelineNews">
                     <div class="pipeline-step-icon">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path
+                          d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                        <path d="M18 14h-8" />
+                        <path d="M15 18h-5" />
+                        <path d="M10 6h8v4h-8V6Z" />
+                      </svg>
                     </div>
                     <div class="pipeline-step-info">
                       <div class="pipeline-step-title">Google News</div>
-                      <div class="pipeline-step-status" id="statusNewsMsg">Extracting contextual coverage evidence...</div>
+                      <div class="pipeline-step-status" id="statusNewsMsg">Extracting contextual coverage evidence...
+                      </div>
                     </div>
                     <div class="pipeline-step-indicator" id="indicatorNews">Pending</div>
                   </div>
@@ -271,13 +280,14 @@
 
             <!-- Investigation Sources Row -->
             <div class="sources-strip" id="investigationSources">
-              
+
               <!-- Source 1: Google Search -->
               <div class="source-item" id="sourceGoogleSearch">
                 <div class="source-icon-wrap" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"/>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
                   </svg>
                 </div>
                 <div class="source-content">
@@ -291,9 +301,10 @@
               <!-- Source 2: Google Maps -->
               <div class="source-item" id="sourceGoogleMaps">
                 <div class="source-icon-wrap" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-                    <circle cx="12" cy="10" r="3"/>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
                   </svg>
                 </div>
                 <div class="source-content">
@@ -307,11 +318,13 @@
               <!-- Source 3: Google News -->
               <div class="source-item" id="sourceGoogleNews">
                 <div class="source-icon-wrap" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
-                    <path d="M18 14h-8"/>
-                    <path d="M15 18h-5"/>
-                    <path d="M10 6h8v4h-8V6Z"/>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                    <path d="M18 14h-8" />
+                    <path d="M15 18h-5" />
+                    <path d="M10 6h8v4h-8V6Z" />
                   </svg>
                 </div>
                 <div class="source-content">
@@ -330,19 +343,20 @@
       <!-- Section: How BrandGuard360 Works -->
       <section class="how-it-works-section" id="how-it-works" aria-label="How BrandGuard360 Works">
         <div class="content-container">
-          
+
           <div class="section-header-centered">
             <h2 class="section-title">How BrandGuard360 Works</h2>
           </div>
 
           <div class="how-it-works-columns">
-            
+
             <!-- Column 01: Search -->
             <div class="work-column" id="colSearch">
               <div class="work-column-icon search-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="11" cy="11" r="8"/>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
               </div>
               <h3 class="work-column-heading">Search</h3>
@@ -354,9 +368,10 @@
             <!-- Column 02: Maps -->
             <div class="work-column" id="colMaps">
               <div class="work-column-icon maps-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-                  <circle cx="12" cy="10" r="3"/>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
                 </svg>
               </div>
               <h3 class="work-column-heading">Maps</h3>
@@ -368,11 +383,13 @@
             <!-- Column 03: News -->
             <div class="work-column" id="colNews">
               <div class="work-column-icon news-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
-                  <path d="M18 14h-8"/>
-                  <path d="M15 18h-5"/>
-                  <path d="M10 6h8v4h-8V6Z"/>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                  <path d="M18 14h-8" />
+                  <path d="M15 18h-5" />
+                  <path d="M10 6h8v4h-8V6Z" />
                 </svg>
               </div>
               <h3 class="work-column-heading">News</h3>
@@ -409,7 +426,7 @@
        ========================================================================= -->
   <div class="loading-view-container" id="viewLoading" style="display: none;" aria-hidden="true">
     <div class="loading-card-wrapper">
-      
+
       <!-- Loading Header -->
       <div class="loading-header">
         <div class="loading-brand-pill">
@@ -423,7 +440,7 @@
 
       <!-- Exact 3 Stages in Locked Order -->
       <div class="stages-timeline" id="stagesTimeline">
-        
+
         <!-- Stage 01: Google Search -->
         <div class="stage-step" id="stageStepSearch" data-stage="search">
           <div class="stage-num-badge">01</div>
@@ -478,8 +495,9 @@
       <div class="loading-footer-area">
         <div class="ready-banner" id="readyBanner" style="display: none;">
           <div class="ready-icon-wrap">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 6L9 17L4 12"/>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17L4 12" />
             </svg>
           </div>
           <div class="ready-text-wrap">
@@ -488,13 +506,14 @@
           </div>
           <button type="button" class="btn-view-findings" id="btnViewFindings">
             <span>View Findings</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"/>
-              <path d="m12 5 7 7-7 7"/>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
             </svg>
           </button>
         </div>
-        
+
         <p class="loading-disclaimer" id="loadingDisclaimer">
           Evidence compiled from public Google surfaces. No numeric scores generated.
         </p>
@@ -508,20 +527,22 @@
        INTERNAL APPLICATION SHELL (DESKTOP SIDEBAR + HEADER + SCREENS 3 TO 7)
        ========================================================================= -->
   <div class="internal-shell" id="internalAppShell" style="display: none;" aria-hidden="true">
-    
+
     <!-- Mobile Sidebar Backdrop Overlay -->
     <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
 
     <!-- Left Sidebar -->
     <aside class="shell-sidebar" id="shellSidebar" aria-label="Internal Navigation">
       <div class="sidebar-top">
-        
+
         <!-- Logo -->
         <a href="#home" class="sidebar-logo" id="sidebarBrandLogo" aria-label="BrandGuard360 Home">
           <span class="sidebar-logo-icon" aria-hidden="true">
             <svg width="18" height="20" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 1L2 4.5V10.2C2 15.3 5.4 20.1 10 21C14.6 20.1 18 15.3 18 10.2V4.5L10 1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M7 10.5L9 12.5L13.5 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 1L2 4.5V10.2C2 15.3 5.4 20.1 10 21C14.6 20.1 18 15.3 18 10.2V4.5L10 1Z" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M7 10.5L9 12.5L13.5 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
             </svg>
           </span>
           <span class="sidebar-logo-text">
@@ -532,7 +553,8 @@
         <!-- Sidebar Primary CTA -->
         <div class="sidebar-action-wrap">
           <button type="button" class="btn-sidebar-new" id="btnSidebarNewInvestigation">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+              stroke-linecap="round" stroke-linejoin="round">
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
@@ -542,16 +564,17 @@
 
         <!-- Sidebar Navigation Links -->
         <nav class="sidebar-nav" aria-label="Workspace Pages">
-          
+
           <div class="nav-section-label">INVESTIGATION</div>
-          
+
           <button type="button" class="sidebar-nav-item active" id="sideNavOverview" data-view="overview">
             <span class="item-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="7" height="9" rx="1"/>
-                <rect x="14" y="3" width="7" height="5" rx="1"/>
-                <rect x="14" y="12" width="7" height="9" rx="1"/>
-                <rect x="3" y="16" width="7" height="5" rx="1"/>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="9" rx="1" />
+                <rect x="14" y="3" width="7" height="5" rx="1" />
+                <rect x="14" y="12" width="7" height="9" rx="1" />
+                <rect x="3" y="16" width="7" height="5" rx="1" />
               </svg>
             </span>
             <span class="item-label">Overview</span>
@@ -559,9 +582,10 @@
 
           <button type="button" class="sidebar-nav-item" id="sideNavSearch" data-view="search">
             <span class="item-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
             </span>
             <span class="item-label">Search</span>
@@ -570,9 +594,10 @@
 
           <button type="button" class="sidebar-nav-item" id="sideNavMaps" data-view="maps">
             <span class="item-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-                <circle cx="12" cy="10" r="3"/>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
               </svg>
             </span>
             <span class="item-label">Maps</span>
@@ -581,11 +606,13 @@
 
           <button type="button" class="sidebar-nav-item" id="sideNavNews" data-view="news">
             <span class="item-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
-                <path d="M18 14h-8"/>
-                <path d="M15 18h-5"/>
-                <path d="M10 6h8v4h-8V6Z"/>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                <path d="M18 14h-8" />
+                <path d="M15 18h-5" />
+                <path d="M10 6h8v4h-8V6Z" />
               </svg>
             </span>
             <span class="item-label">News</span>
@@ -596,12 +623,13 @@
 
           <button type="button" class="sidebar-nav-item" id="sideNavReports" data-view="reports">
             <span class="item-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-                <line x1="16" y1="13" x2="8" y2="13"/>
-                <line x1="16" y1="17" x2="8" y2="17"/>
-                <line x1="10" y1="9" x2="8" y2="9"/>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <line x1="10" y1="9" x2="8" y2="9" />
               </svg>
             </span>
             <span class="item-label">Reports</span>
@@ -614,9 +642,11 @@
       <div class="sidebar-bottom">
         <button type="button" class="sidebar-nav-item settings-item" id="btnOpenSettings">
           <span class="item-icon" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
             </svg>
           </span>
           <span class="item-label">Settings</span>
@@ -626,13 +656,14 @@
 
     <!-- Shell Right Main Section -->
     <div class="shell-right-area">
-      
+
       <!-- Top Header -->
       <header class="shell-header" id="shellHeader">
         <div class="header-left">
-          
+
           <!-- Mobile Hamburger Toggle -->
-          <button type="button" class="btn-mobile-menu" id="btnToggleMobileSidebar" aria-label="Toggle navigation drawer">
+          <button type="button" class="btn-mobile-menu" id="btnToggleMobileSidebar"
+            aria-label="Toggle navigation drawer">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="3" y1="12" x2="21" y2="12"></line>
               <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -644,10 +675,11 @@
           <div class="investigation-meta-group">
             <div class="meta-brand-badge" id="headerBrandBadge"></div>
             <div class="meta-location-tag" id="headerLocationTag"></div>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="meta-website-link" id="headerWebsiteLink" style="display: none;">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="meta-website-link" id="headerWebsiteLink"
+              style="display: none;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
               </svg>
               <span id="headerWebsiteText"></span>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -661,7 +693,7 @@
         </div>
 
         <div class="header-right">
-          
+
           <!-- LIVE API Indicator -->
           <div class="demo-mode-badge" title="Live FastAPI Investigation Active">
             <span class="demo-dot"></span>
@@ -715,12 +747,12 @@
 
       <!-- Main Shell Content Container holding Views 3 to 7 -->
       <main class="shell-main-content" id="shellMainContent">
-        
+
         <!-- ===================================================================
              SCREEN 3: INVESTIGATION OVERVIEW
              =================================================================== -->
         <div class="internal-view-panel active" id="viewOverview" data-view-name="overview">
-          
+
           <!-- Report Header Area -->
           <div class="report-main-header">
             <div class="report-title-group">
@@ -731,7 +763,9 @@
                 <span class="meta-sep">,</span>
                 <span class="meta-item"><strong>Location:</strong> <span id="ovLocation"></span></span>
                 <span class="meta-sep" id="ovWebsiteSep" style="display: none;">,</span>
-                <span class="meta-item" id="ovWebsiteItem" style="display: none;"><strong>Owner Website:</strong> <a href="#" target="_blank" rel="noopener noreferrer" class="link-inline" id="ovWebsiteLink"><span id="ovWebsite"></span></a></span>
+                <span class="meta-item" id="ovWebsiteItem" style="display: none;"><strong>Owner Website:</strong> <a
+                    href="#" target="_blank" rel="noopener noreferrer" class="link-inline" id="ovWebsiteLink"><span
+                      id="ovWebsite"></span></a></span>
                 <span class="meta-sep">,</span>
                 <span class="meta-badge-text">Investigated using Google Search, Maps, and News</span>
               </div>
@@ -766,20 +800,23 @@
               <div class="signal-status-pill" id="ovOverallSignalBadge">
               </div>
             </div>
-            
+
             <p class="signal-explanation-text" id="ovOverallSignalExplanation">
             </p>
           </section>
 
           <!-- Source Summaries (Search, Maps, News) -->
           <section class="sources-summary-grid" aria-label="Source Summary Findings">
-            
+
             <!-- Source 1: Search -->
             <div class="source-summary-card" id="cardSummarySearch">
               <div class="summary-card-top">
                 <div class="summary-source-identity">
                   <div class="source-mini-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
                   </div>
                   <h3 class="summary-source-name">Google Search</h3>
                 </div>
@@ -788,7 +825,10 @@
               <p class="summary-card-text" id="ovSearchExplanation"></p>
               <button type="button" class="btn-card-inspect" data-target-view="search">
                 <span>View Search Evidence</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
               </button>
             </div>
 
@@ -797,7 +837,10 @@
               <div class="summary-card-top">
                 <div class="summary-source-identity">
                   <div class="source-mini-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
                   </div>
                   <h3 class="summary-source-name">Google Maps</h3>
                 </div>
@@ -806,7 +849,10 @@
               <p class="summary-card-text" id="ovMapsExplanation"></p>
               <button type="button" class="btn-card-inspect" data-target-view="maps">
                 <span>View Maps Evidence</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
               </button>
             </div>
 
@@ -815,7 +861,13 @@
               <div class="summary-card-top">
                 <div class="summary-source-identity">
                   <div class="source-mini-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path
+                        d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                      <path d="M18 14h-8" />
+                      <path d="M15 18h-5" />
+                      <path d="M10 6h8v4h-8V6Z" />
+                    </svg>
                   </div>
                   <h3 class="summary-source-name">Google News</h3>
                 </div>
@@ -824,7 +876,10 @@
               <p class="summary-card-text" id="ovNewsExplanation"></p>
               <button type="button" class="btn-card-inspect" data-target-view="news">
                 <span>View News Evidence</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
               </button>
             </div>
 
@@ -861,7 +916,7 @@
              SCREEN 4: GOOGLE SEARCH
              =================================================================== -->
         <div class="internal-view-panel" id="viewSearch" data-view-name="search">
-          
+
           <!-- Page Header -->
           <div class="source-view-header">
             <div>
@@ -880,7 +935,10 @@
             <div class="owner-panel-top">
               <div class="owner-badge-title">
                 <span class="owner-indicator-icon">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                  </svg>
                 </span>
                 <span class="owner-title-text">Owner Website Status</span>
               </div>
@@ -919,50 +977,19 @@
             </div>
           </section>
 
-          <!-- Advertisements Section -->
-          <section class="ads-section">
+          <!-- Potential Competitors Section -->
+          <section class="competitors-section" id="searchCompetitorsSection">
             <div class="section-title-wrap">
-              <span class="section-kicker">COMMERCIAL SIGNALS</span>
-              <h2 class="section-title-dark">Advertisements</h2>
+              <span class="section-kicker">MARKET LANDSCAPE</span>
+              <h2 class="section-title-dark">Potential Competitors</h2>
             </div>
-
-            <div class="ads-container" id="searchAdsContainer">
-              <!-- Dynamically populated ads or empty state -->
+            <p class="neutral-box-desc" style="margin-bottom: 16px;">
+              Potential competitor brands identified from the current investigation's evidence.
+            </p>
+            <div class="competitors-list" id="searchPotentialCompetitorsList">
+              <!-- Dynamically populated competitor cards or empty state -->
             </div>
           </section>
-
-          <!-- Mentioned Brands and Potential Competitors (Neutral Language) -->
-          <div class="two-column-neutral-grid">
-            
-            <!-- Mentioned Brands -->
-            <section class="neutral-box">
-              <div class="neutral-box-header">
-                <h3 class="neutral-box-title">Mentioned Brands</h3>
-                <span class="neutral-helper">Observed in search context</span>
-              </div>
-              <p class="neutral-box-desc">
-                Names cataloged within organic citations and regional listings. Mentioned status does not imply competitive rivalry.
-              </p>
-              <div class="tags-cluster" id="searchMentionedBrandsCluster">
-                <!-- Mentioned brands chips -->
-              </div>
-            </section>
-
-            <!-- Potential Competitors -->
-            <section class="neutral-box">
-              <div class="neutral-box-header">
-                <h3 class="neutral-box-title">Potential Competitors</h3>
-                <span class="neutral-helper">Contextual evidence</span>
-              </div>
-              <p class="neutral-box-desc">
-                Entities appearing in adjacent industry classifications or directory placements. Potential competitor status does not imply wrongdoing.
-              </p>
-              <div class="competitors-list" id="searchPotentialCompetitorsList">
-                <!-- Potential competitors cards -->
-              </div>
-            </section>
-
-          </div>
 
         </div>
 
@@ -971,7 +998,7 @@
              SCREEN 5: GOOGLE MAPS
              =================================================================== -->
         <div class="internal-view-panel" id="viewMaps" data-view-name="maps">
-          
+
           <!-- Page Header -->
           <div class="source-view-header">
             <div>
@@ -988,7 +1015,10 @@
           <!-- Maps Findings Summary Box -->
           <div class="findings-summary-box" id="mapsFindingsBox">
             <div class="box-icon-cell">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
             </div>
             <div class="box-content-cell">
               <h3 class="box-heading">Maps Findings</h3>
@@ -998,66 +1028,67 @@
 
           <!-- Two-Column Desktop Layout (Listings on one side, Visual Map on the other) -->
           <div class="maps-two-column-layout">
-            
+
             <!-- Left Side: Listings -->
             <div class="maps-listings-column">
               <div class="column-header-row">
                 <h3 class="column-subhead">Nearby Business Listings</h3>
                 <span class="count-tag" id="mapsListingCount" style="display: none;"></span>
               </div>
-              
+
               <div class="listings-vertical-stack" id="mapsListingsContainer">
                 <!-- Dynamically populated listing cards -->
               </div>
             </div>
 
-            <!-- Right Side: Lightweight Vector Location Visualization -->
-            <div class="maps-visual-column">
+            <!-- Right Side: Location Context Panel -->
+            <div class="maps-context-column">
               <div class="column-header-row">
-                <h3 class="column-subhead">Geographic Presence Grid</h3>
-                <span class="coord-tag" id="mapsCoordTag"></span>
+                <h3 class="column-subhead">Location Context</h3>
               </div>
 
-              <div class="lightweight-map-card" id="lightweightMapCard">
-                
-                <!-- Map Canvas / SVG Grid Container -->
-                <div class="map-viewport-grid" id="mapViewportGrid">
-                  
-                  <!-- Architectural Grid Background -->
-                  <div class="map-grid-mesh" aria-hidden="true"></div>
-                  
-                  <!-- Geographic Landform Outline Hint -->
-                  <div class="map-regional-boundary" aria-hidden="true"></div>
-
-                  <!-- Dynamic Pins Container -->
-                  <div class="map-pins-layer" id="mapPinsLayer">
-                    <!-- Pin elements generated dynamically -->
+              <div class="location-context-card" id="locationContextCard">
+                <div class="context-card-top">
+                  <div class="context-geo-header">
+                    <div class="context-geo-icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </div>
+                    <div class="context-geo-meta">
+                      <span class="context-label-kicker">INVESTIGATION LOCATION</span>
+                      <div class="context-location-title" id="ctxLocationName"></div>
+                    </div>
                   </div>
 
-                  <!-- Map UI Controls Overlay -->
-                  <div class="map-overlay-controls">
-                    <button type="button" class="btn-map-zoom" id="btnZoomIn" aria-label="Zoom in map">+</button>
-                    <button type="button" class="btn-map-zoom" id="btnZoomOut" aria-label="Zoom out map">&minus;</button>
+                  <div class="context-brand-row">
+                    <span class="context-meta-label">Investigated Brand:</span>
+                    <strong class="context-brand-name" id="ctxCompanyName"></strong>
                   </div>
 
-                  <div class="map-legend-overlay">
-                    <div class="legend-chip"><span class="legend-dot normal"></span><span>Normal Listing</span></div>
-                    <div class="legend-chip"><span class="legend-dot similar"></span><span>Similar Naming</span></div>
+                  <div class="context-scope-row">
+                    <span class="context-meta-label">Investigation Type:</span>
+                    <span class="context-scope-text">Local Maps Investigation</span>
                   </div>
 
-                </div>
-
-                <!-- Map Coordinates Metadata Strip -->
-                <div class="map-status-strip">
-                  <div class="strip-left">
-                    <span class="strip-label">TARGET MARKET:</span>
-                    <strong id="mapTargetMarketText"></strong>
-                  </div>
-                  <div class="strip-right">
-                    <span class="strip-coord"></span>
+                  <div class="context-status-row">
+                    <span class="context-meta-label">Maps Status:</span>
+                    <span class="status-pill status-positive" id="ctxMapsStatus">Findings Available</span>
                   </div>
                 </div>
 
+                <div class="context-card-actions">
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="btn-open-google-maps" id="btnOpenGoogleMaps">
+                    <span>Open in Google Maps</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <p class="context-support-note">Open the investigated brand location in Google Maps.</p>
+                </div>
               </div>
             </div>
 
@@ -1070,7 +1101,7 @@
              SCREEN 6: GOOGLE NEWS
              =================================================================== -->
         <div class="internal-view-panel" id="viewNews" data-view-name="news">
-          
+
           <!-- Page Header -->
           <div class="source-view-header">
             <div>
@@ -1087,7 +1118,13 @@
           <!-- News Findings Summary Box -->
           <div class="findings-summary-box" id="newsFindingsBox">
             <div class="box-icon-cell">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                <path d="M18 14h-8" />
+                <path d="M15 18h-5" />
+                <path d="M10 6h8v4h-8V6Z" />
+              </svg>
             </div>
             <div class="box-content-cell">
               <h3 class="box-heading">News Findings</h3>
@@ -1114,7 +1151,7 @@
              SCREEN 7: REPORTS (PREVIOUS INVESTIGATIONS)
              =================================================================== -->
         <div class="internal-view-panel" id="viewReports" data-view-name="reports">
-          
+
           <!-- Page Header -->
           <div class="reports-view-header">
             <div>
@@ -1122,7 +1159,7 @@
               <h1 class="page-headline">Reports</h1>
               <p class="page-subtext">Previous brand investigations.</p>
             </div>
-            
+
             <button type="button" class="btn-report-primary" id="btnReportsNewInvestigation">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -1134,19 +1171,17 @@
 
           <!-- Report Filter and Search Controls -->
           <div class="reports-filter-bar">
-            
+
             <!-- Search Input -->
             <div class="report-search-field">
               <span class="search-input-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
               </span>
-              <input 
-                type="text" 
-                id="inputReportSearch" 
-                class="report-search-input" 
-                placeholder="Search reports by brand or location..." 
-                aria-label="Search previous reports"
-              />
+              <input type="text" id="inputReportSearch" class="report-search-input"
+                placeholder="Search reports by brand or location..." aria-label="Search previous reports" />
             </div>
 
             <!-- Signal Filter Tabs -->
@@ -1161,7 +1196,7 @@
 
           <!-- Reports Table / Card List Container -->
           <div class="reports-list-card">
-            
+
             <!-- Table View on Desktop -->
             <div class="reports-table-wrapper">
               <table class="reports-data-table" id="reportsDataTable">
@@ -1191,11 +1226,16 @@
         <div class="internal-view-panel" id="viewError" data-view-name="error" style="display: none;">
           <div class="error-state-card">
             <div class="error-icon-cell">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
             </div>
             <h2 class="error-headline">Investigation Could Not Be Completed</h2>
             <p class="error-description">
-              Something went wrong while preparing the investigation. Public sources could not be queried or the request timed out.
+              Something went wrong while preparing the investigation. Public sources could not be queried or the request
+              timed out.
             </p>
             <div class="error-actions">
               <button type="button" class="btn-try-again" id="btnTryAgain">
@@ -1277,4 +1317,5 @@
   <script src="js/jspdf.umd.min.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>

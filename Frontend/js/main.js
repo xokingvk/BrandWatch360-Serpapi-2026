@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Current Active State (Stateless / Current Session Memory)
   let currentInvestigation = null;
+  let lastInvestigationInputs = { brand: '', location: '', website: '' };
   let allReportsList = [];
   let currentFilter = 'all';
   let currentSearchQuery = '';
@@ -127,21 +128,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchQueriesSection = document.getElementById('searchQueriesSection');
   const searchQueriesContainer = document.getElementById('searchQueriesContainer');
   const searchOrganicContainer = document.getElementById('searchOrganicContainer');
-  const searchAdsContainer = document.getElementById('searchAdsContainer');
-  const searchMentionedBrandsCluster = document.getElementById('searchMentionedBrandsCluster');
   const searchPotentialCompetitorsList = document.getElementById('searchPotentialCompetitorsList');
 
   // Maps Screen Elements
   const mapsSourceSignalBadge = document.getElementById('mapsSourceSignalBadge');
   const mapsFindingsSummary = document.getElementById('mapsFindingsSummary');
   const mapsListingCount = document.getElementById('mapsListingCount');
-  const mapsCoordTag = document.getElementById('mapsCoordTag');
   const mapsListingsContainer = document.getElementById('mapsListingsContainer');
-  const mapPinsLayer = document.getElementById('mapPinsLayer');
-  const mapTargetMarketText = document.getElementById('mapTargetMarketText');
-  const btnZoomIn = document.getElementById('btnZoomIn');
-  const btnZoomOut = document.getElementById('btnZoomOut');
-  let currentMapScale = 1;
+  const ctxLocationName = document.getElementById('ctxLocationName');
+  const ctxCompanyName = document.getElementById('ctxCompanyName');
+  const ctxMapsStatus = document.getElementById('ctxMapsStatus');
+  const btnOpenGoogleMaps = document.getElementById('btnOpenGoogleMaps');
 
   // News Screen Elements
   const newsSourceSignalBadge = document.getElementById('newsSourceSignalBadge');
@@ -238,8 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchQueriesSection) searchQueriesSection.style.display = 'none';
     if (searchQueriesContainer) searchQueriesContainer.innerHTML = '';
     if (searchOrganicContainer) searchOrganicContainer.innerHTML = '';
-    if (searchAdsContainer) searchAdsContainer.innerHTML = '';
-    if (searchMentionedBrandsCluster) searchMentionedBrandsCluster.innerHTML = '';
     if (searchPotentialCompetitorsList) searchPotentialCompetitorsList.innerHTML = '';
 
     // Maps View
@@ -249,10 +244,16 @@ document.addEventListener('DOMContentLoaded', () => {
       mapsListingCount.textContent = '';
       mapsListingCount.style.display = 'none';
     }
-    if (mapsCoordTag) mapsCoordTag.textContent = '';
-    if (mapTargetMarketText) mapTargetMarketText.textContent = '';
     if (mapsListingsContainer) mapsListingsContainer.innerHTML = '';
-    if (mapPinsLayer) mapPinsLayer.innerHTML = '';
+    if (ctxLocationName) ctxLocationName.textContent = '';
+    if (ctxCompanyName) ctxCompanyName.textContent = '';
+    if (ctxMapsStatus) {
+      ctxMapsStatus.textContent = 'Pending';
+      ctxMapsStatus.className = 'status-pill';
+    }
+    if (btnOpenGoogleMaps) {
+      btnOpenGoogleMaps.href = '#';
+    }
 
     // News View
     if (newsSourceSignalBadge) newsSourceSignalBadge.textContent = '';
@@ -523,34 +524,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Error State "Try Again"
+  // Error State "Try Again" — retries the SAME current investigation
   if (btnTryAgain) {
     btnTryAgain.addEventListener('click', () => {
-      navigateToHome(true);
-    });
-  }
-
-  // Map Zoom Controls
-  if (btnZoomIn && btnZoomOut) {
-    btnZoomIn.addEventListener('click', () => {
-      if (currentMapScale < 1.4) {
-        currentMapScale += 0.15;
-        applyMapZoom();
+      if (lastInvestigationInputs.brand && lastInvestigationInputs.location) {
+        startLiveInvestigation(
+          lastInvestigationInputs.brand,
+          lastInvestigationInputs.location,
+          lastInvestigationInputs.website
+        );
+      } else {
+        navigateToHome(true);
       }
     });
-    btnZoomOut.addEventListener('click', () => {
-      if (currentMapScale > 0.85) {
-        currentMapScale -= 0.15;
-        applyMapZoom();
-      }
-    });
-  }
-
-  function applyMapZoom() {
-    const mesh = document.querySelector('.map-grid-mesh');
-    const pins = document.getElementById('mapPinsLayer');
-    if (mesh) mesh.style.transform = `scale(${currentMapScale})`;
-    if (pins) pins.style.transform = `scale(${currentMapScale})`;
   }
 
   // =========================================================================
@@ -605,6 +591,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // REAL INVESTIGATION WORKFLOW (FASTAPI)
   // =========================================================================
   async function startLiveInvestigation(brand, location, website) {
+    // Save current inputs for Try Again retry
+    lastInvestigationInputs = { brand, location, website: website || "" };
+
     // 1. Immediately purge any leftover state from prior investigations
     clearInvestigationState();
 
@@ -676,7 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (errData && errData.detail) {
             errMessage = typeof errData.detail === 'string' ? errData.detail : JSON.stringify(errData.detail);
           }
-        } catch (_) {}
+        } catch (_) { }
         throw new Error(errMessage);
       }
 
@@ -742,12 +731,12 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('[BrandGuard360] Investigation Error:', err);
       viewLoading.style.display = 'none';
       internalAppShell.style.display = 'flex';
-      
+
       const errorHeadline = document.querySelector('#viewError .error-headline');
       const errorDesc = document.querySelector('#viewError .error-description');
       if (errorHeadline) errorHeadline.textContent = 'Investigation Could Not Be Completed';
       if (errorDesc) errorDesc.textContent = err.message || 'Something went wrong while executing the investigation. Public sources could not be queried or the server timed out.';
-      
+
       navigateToView('error');
     } finally {
       // Re-enable form button
@@ -844,16 +833,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (adsMatch) {
       const adsBlock = adsMatch[0];
       if (!adsBlock.toLowerCase().includes('no ads found')) {
-        const adItemRegex = /(\d+)\.\s*([^\n]+)(?:[\s\S]*?Domain:\s*([^\n]+))?(?:[\s\S]*?Type:\s*([^\n]+))?(?:[\s\S]*?Reason:\s*([^\n]+))?/gi;
-        let adMatch;
-        while ((adMatch = adItemRegex.exec(adsBlock)) !== null) {
-          result.advertisements.push({
-            advertiser: (adMatch[2] || '').trim(),
-            domain: (adMatch[3] || '').trim(),
-            type: (adMatch[4] || 'Sponsored').trim(),
-            text: (adMatch[5] || '').trim(),
-            url: '',
-            signal: 'Review Needed'
+        const adBlocks = adsBlock.split(/\n(?=\d+\.\s*)/).slice(1);
+        if (adBlocks.length > 0) {
+          adBlocks.forEach(blk => {
+            const lines = blk.split('\n').map(l => l.trim()).filter(Boolean);
+            const firstLine = lines[0] || '';
+            const advName = firstLine.replace(/^\d+\.\s*/, '').trim();
+            const headMatch = blk.match(/Headline:\s*([^\n]+)/i);
+            const domMatch = blk.match(/Domain:\s*([^\n]+)/i);
+            const destMatch = blk.match(/Destination:\s*([^\n]+)/i);
+            const relMatch = blk.match(/Relevance:\s*([^\n]+)/i);
+            const stMatch = blk.match(/Status:\s*([^\n]+)/i);
+            const reasMatch = blk.match(/Reasoning:\s*([^\n]+)/i);
+
+            result.advertisements.push({
+              advertiser: advName,
+              headline: headMatch ? headMatch[1].trim() : '',
+              displayed_domain: domMatch ? domMatch[1].trim() : '',
+              domain: domMatch ? domMatch[1].trim() : '',
+              destination_url: destMatch ? destMatch[1].trim() : '',
+              relevance_explanation: relMatch ? relMatch[1].trim() : '',
+              suspicion_status: stMatch ? stMatch[1].trim() : 'No Suspicious Evidence Found',
+              reasoning: reasMatch ? reasMatch[1].trim() : ''
+            });
           });
         }
       }
@@ -863,23 +865,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const compMatch = text.match(/Potential Competitors[\s\S]*?(?=(?:Web Summary|$))/i);
     if (compMatch) {
       const compBlock = compMatch[0];
-      const mentionedMatch = compBlock.match(/Mentioned:\s*([^\n]+)/i);
-      if (mentionedMatch) {
-        const raw = mentionedMatch[1].trim();
-        if (raw && !raw.toLowerCase().includes('none')) {
-          result.mentionedBrands = raw.split(',').map(s => s.trim()).filter(Boolean);
-        }
-      }
+      if (!compBlock.toLowerCase().includes('no potential competitors identified')) {
+        const compBlocks = compBlock.split(/\n(?=\d+\.\s*)/).slice(1);
+        if (compBlocks.length > 0) {
+          compBlocks.forEach(blk => {
+            const lines = blk.split('\n').map(l => l.trim()).filter(Boolean);
+            const firstLine = lines[0] || '';
+            const cName = firstLine.replace(/^\d+\.\s*/, '').trim();
+            const whyMatch = blk.match(/Why:\s*([^\n]+)/i);
+            const stMatch = blk.match(/Status:\s*([^\n]+)/i);
+            const reasMatch = blk.match(/Reasoning:\s*([^\n]+)/i);
 
-      const suspiciousMatch = compBlock.match(/Suspicious:\s*([^\n]+)/i);
-      if (suspiciousMatch) {
-        const raw = suspiciousMatch[1].trim();
-        if (raw && !raw.toLowerCase().includes('none')) {
-          result.potentialCompetitors = raw.split(',').map(name => ({
-            name: name.trim(),
-            domain: '',
-            note: 'Flagged for closer review based on search evidence.'
-          })).filter(c => c.name);
+            if (cName && !cName.toLowerCase().startsWith('none')) {
+              result.potentialCompetitors.push({
+                brand_name: cName,
+                name: cName,
+                why_it_competes: whyMatch ? whyMatch[1].trim() : '',
+                suspicion_status: stMatch ? stMatch[1].trim() : 'No Suspicious Evidence Found',
+                evidence_and_reasoning: reasMatch ? reasMatch[1].trim() : ''
+              });
+            }
+          });
         }
       }
     }
@@ -924,7 +930,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Only display counts when real items exist; otherwise hide
     // -------------------------------------------------------------
     const organicCount = parsedSearch.organicResults.length;
-    const mapsCount = data.maps_findings ? 1 : 0;
+
+    let mapsResultsList = [];
+    if (Array.isArray(data.maps_results) && data.maps_results.length > 0) {
+      mapsResultsList = data.maps_results;
+    } else if (data.maps_findings && Array.isArray(data.maps_findings.listings) && data.maps_findings.listings.length > 0) {
+      mapsResultsList = data.maps_findings.listings;
+    }
+    const mapsCount = mapsResultsList.length;
     const newsCount = sourceLinks.length;
 
     if (sideBadgeSearch) {
@@ -1000,8 +1013,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Overall Brand Signal (CONFIRMED / CONFLICTING / UNKNOWN)
     const isAnomaly = Boolean(data.anomaly_detected);
     const overallSignal = (data.overall_signal || (isAnomaly ? 'CONFLICTING' : 'CONFIRMED')).toUpperCase();
-    const signalClass = overallSignal === 'CONFIRMED' 
-      ? 'signal-confirmed' 
+    const signalClass = overallSignal === 'CONFIRMED'
+      ? 'signal-confirmed'
       : (overallSignal === 'CONFLICTING' ? 'signal-conflicting' : 'signal-unknown');
 
     if (ovOverallSignalBadge) {
@@ -1117,24 +1130,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Owner Website Panel
-    const ownerStatusVal = data.owner_website_status || parsedSearch.ownerStatus || (data.website ? 'Found' : 'Not provided');
+    const ownerDomain = data.website ? data.website.replace(/^https?:\/\//, '').replace(/\/.*$/, '') : 'Not provided';
+    let rawOwnerStatus = data.owner_website_status || parsedSearch.ownerStatus || 'Not provided';
+    let ownerStatusDisplay = 'Not provided';
+    let ownerPillClass = 'status-unknown';
+    let ownerExplanationText = '';
+
+    if (rawOwnerStatus.toLowerCase().includes('found') && !rawOwnerStatus.toLowerCase().includes('not found')) {
+      ownerStatusDisplay = rawOwnerStatus.startsWith('Found') ? rawOwnerStatus : 'Found';
+      ownerPillClass = 'status-positive';
+      ownerExplanationText = `The owner website '${ownerDomain}' was verified in organic search results.`;
+    } else if (rawOwnerStatus.toLowerCase().includes('not found')) {
+      ownerStatusDisplay = 'Not found in returned organic results';
+      ownerPillClass = 'status-warning';
+      ownerExplanationText = `The provided owner website domain '${ownerDomain}' was not observed within the returned organic search results. This reflects search visibility in the query, not whether the website is registered or active.`;
+    } else {
+      ownerStatusDisplay = 'Not provided';
+      ownerPillClass = 'status-unknown';
+      ownerExplanationText = 'No owner website was supplied for domain verification.';
+    }
+
     if (searchOwnerStatusPill) {
-      searchOwnerStatusPill.textContent = ownerStatusVal;
-      searchOwnerStatusPill.className = `status-pill status-${ownerStatusVal === 'Found' ? 'positive' : (ownerStatusVal === 'Not provided' ? 'neutral' : 'warning')}`;
+      searchOwnerStatusPill.textContent = ownerStatusDisplay;
+      searchOwnerStatusPill.className = `status-pill ${ownerPillClass}`;
     }
     if (searchOwnerDomain) {
-      searchOwnerDomain.textContent = data.website ? data.website.replace(/^https?:\/\//, '').replace(/\/.*$/, '') : (parsedSearch.ownerDomain || 'Not provided');
+      searchOwnerDomain.textContent = ownerDomain;
     }
     if (searchOwnerPosition) {
-      if (parsedSearch.ownerPosition) {
-        searchOwnerPosition.textContent = parsedSearch.ownerPosition.startsWith('#') ? parsedSearch.ownerPosition : `#${parsedSearch.ownerPosition}`;
+      const posMatch = ownerStatusDisplay.match(/#(\d+)/) || (parsedSearch.ownerPosition ? [null, parsedSearch.ownerPosition.replace('#', '')] : null);
+      if (posMatch) {
+        searchOwnerPosition.textContent = `#${posMatch[1]}`;
         searchOwnerPosition.style.display = 'inline-block';
       } else {
         searchOwnerPosition.style.display = 'none';
       }
     }
     if (searchOwnerExplanation) {
-      searchOwnerExplanation.textContent = parsedSearch.webSummary || data.organic_findings || 'Owner domain standing cataloged from organic placements.';
+      searchOwnerExplanation.textContent = ownerExplanationText || parsedSearch.webSummary || 'Owner domain standing cataloged from organic placements.';
     }
 
     // Search Queries Section (Driven directly by response.search_queries)
@@ -1156,30 +1189,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Organic Results
+    const orgResults = Array.isArray(data.organic_results) && data.organic_results.length > 0
+      ? data.organic_results
+      : (parsedSearch.organicResults.length > 0 ? parsedSearch.organicResults : []);
+
     if (searchOrganicContainer) {
       searchOrganicContainer.innerHTML = '';
-      if (parsedSearch.organicResults.length > 0) {
-        parsedSearch.organicResults.forEach(item => {
+      if (orgResults.length > 0) {
+        orgResults.forEach((item, idx) => {
           const row = document.createElement('div');
           row.className = 'organic-result-item';
+          const pos = item.position || (idx + 1);
+          const rel = item.relevance_status || 'Relevant to the investigated brand';
+          let relClass = 'status-positive';
+          if (rel.toLowerCase().includes('potentially') || rel.toLowerCase().includes('needs more evidence')) {
+            relClass = 'status-unknown';
+          } else if (rel.toLowerCase().includes('unrelated')) {
+            relClass = 'status-warning';
+          }
+
           row.innerHTML = `
-            <div class="result-pos-col">#${item.position}</div>
+            <div class="result-pos-col">#${pos}</div>
             <div class="result-content-col">
               <div class="result-header-row">
                 <div class="result-meta-left">
-                  <span class="result-domain">${escapeHtml(item.domain)}</span>
-                  <span class="result-type-badge">${escapeHtml(item.type)}</span>
+                  <span class="result-domain">${escapeHtml(item.domain || safeGetDomain(item.url || ''))}</span>
+                  <span class="result-type-badge">${escapeHtml(item.type || 'Organic')}</span>
                 </div>
-                <span class="status-pill status-positive">Observed</span>
+                <span class="status-pill ${relClass}">${escapeHtml(rel)}</span>
               </div>
               ${item.url ? `
                 <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="result-title-link">
-                  ${escapeHtml(item.title)}
+                  ${escapeHtml(item.title || item.snippet)}
                 </a>
               ` : `
-                <div class="result-title-link" style="cursor: default;">${escapeHtml(item.title)}</div>
+                <div class="result-title-link" style="cursor: default;">${escapeHtml(item.title || item.snippet)}</div>
               `}
-              <p class="result-snippet">${escapeHtml(item.snippet)}</p>
+              <p class="result-snippet">${escapeHtml(item.snippet || item.reason || item.title)}</p>
               <div class="result-footer-row">
                 <span class="finding-source-tag">Google Search Placement</span>
                 ${item.url ? `
@@ -1226,90 +1272,60 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Advertisements
-    if (searchAdsContainer) {
-      searchAdsContainer.innerHTML = '';
-      if (parsedSearch.advertisements.length > 0) {
-        parsedSearch.advertisements.forEach(ad => {
-          const adCard = document.createElement('div');
-          adCard.className = 'ad-card-item';
-          adCard.innerHTML = `
-            <div class="ad-top-row">
-              <div class="ad-identity">
-                <span class="ad-sponsor-label">SPONSORED</span>
-                <span class="ad-advertiser-name">${escapeHtml(ad.advertiser)}</span>
-                <span class="ad-domain-text">${escapeHtml(ad.domain)}</span>
-              </div>
-              <span class="status-pill status-warning">${escapeHtml(ad.signal)}</span>
-            </div>
-            <p class="ad-copy-text">${escapeHtml(ad.text)}</p>
-            <div class="result-footer-row">
-              <span class="finding-source-tag">Google Sponsored Ads</span>
-            </div>
-          `;
-          searchAdsContainer.appendChild(adCard);
-        });
-      } else if (data.advertisement_findings && !data.advertisement_findings.toLowerCase().includes('no ads found')) {
-        const adCard = document.createElement('div');
-        adCard.className = 'ad-card-item';
-        adCard.innerHTML = `
-          <div class="ad-top-row">
-            <div class="ad-identity">
-              <span class="ad-sponsor-label">COMMERCIAL EVIDENCE</span>
-              <span class="ad-advertiser-name">${escapeHtml(data.brand)}</span>
-            </div>
-            <span class="status-pill status-warning">Observed</span>
-          </div>
-          <p class="ad-copy-text">${escapeHtml(data.advertisement_findings)}</p>
-          <div class="result-footer-row">
-            <span class="finding-source-tag">Google Sponsored Ads</span>
-          </div>
-        `;
-        searchAdsContainer.appendChild(adCard);
-      } else {
-        searchAdsContainer.innerHTML = `
-          <div class="empty-state-box">
-            <div class="empty-state-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </div>
-            <h3 class="empty-state-title">No Ads Found</h3>
-            <p class="empty-state-text">No sponsored advertisements were returned for this investigation.</p>
-          </div>
-        `;
-      }
-    }
+    // Potential Competitors — Candidate & verified real market competitors
+    const compResults = Array.isArray(data.potential_competitors) && data.potential_competitors.length > 0
+      ? data.potential_competitors
+      : (parsedSearch.potentialCompetitors.length > 0 ? parsedSearch.potentialCompetitors : []);
 
-    // Mentioned Brands
-    if (searchMentionedBrandsCluster) {
-      searchMentionedBrandsCluster.innerHTML = '';
-      const mentioned = parsedSearch.mentionedBrands.length > 0 ? parsedSearch.mentionedBrands : [data.brand];
-      mentioned.forEach(name => {
-        const chip = document.createElement('span');
-        chip.className = 'neutral-tag-chip';
-        chip.textContent = name;
-        searchMentionedBrandsCluster.appendChild(chip);
-      });
-    }
-
-    // Potential Competitors
     if (searchPotentialCompetitorsList) {
       searchPotentialCompetitorsList.innerHTML = '';
-      if (parsedSearch.potentialCompetitors.length > 0) {
-        parsedSearch.potentialCompetitors.forEach(comp => {
+      if (compResults.length > 0) {
+        compResults.forEach(comp => {
           const item = document.createElement('div');
-          item.className = 'competitor-item-card';
+          const status = comp.suspicion_status || 'No Suspicious Evidence Found';
+          let pillClass = 'status-positive';
+          let borderClass = 'status-border-clean';
+
+          if (status.toLowerCase().includes('suspicious activity') || (status.toLowerCase().includes('suspicious') && !status.toLowerCase().includes('no suspicious'))) {
+            pillClass = 'status-concerning';
+            borderClass = 'status-border-suspicious';
+          } else if (status.toLowerCase().includes('insufficient')) {
+            pillClass = 'status-unknown';
+            borderClass = 'status-border-insufficient';
+          }
+
+          const brandName = comp.brand_name || comp.name || '';
+          const whyCompetes = comp.why_it_competes || 'Relevant competitor operating in the same market sector.';
+          const reasoning = comp.reasoning || comp.evidence_and_reasoning || comp.note || 'Identified from public investigation evidence.';
+
+          item.className = `competitor-item-card ${borderClass}`;
           item.innerHTML = `
             <div class="comp-header">
-              <span class="comp-name">${escapeHtml(comp.name)}</span>
-              <span class="comp-domain">${escapeHtml(comp.domain || '')}</span>
+              <h4 class="comp-name">${escapeHtml(brandName)}</h4>
+              <span class="status-pill ${pillClass}">${escapeHtml(status)}</span>
             </div>
-            <p class="comp-note">${escapeHtml(comp.note)}</p>
+            <div class="comp-body">
+              <div class="comp-field-row">
+                <span class="comp-field-label">Why it competes:</span>
+                <span>${escapeHtml(whyCompetes)}</span>
+              </div>
+              <div class="comp-field-row">
+                <span class="comp-field-label">Reasoning:</span>
+                <span>${escapeHtml(reasoning)}</span>
+              </div>
+            </div>
           `;
           searchPotentialCompetitorsList.appendChild(item);
         });
       } else {
         searchPotentialCompetitorsList.innerHTML = `
-          <p class="neutral-box-desc" style="margin-bottom: 0;">No suspicious competitor entities identified from public evidence.</p>
+          <div class="empty-state-box">
+            <div class="empty-state-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 class="empty-state-title">No Potential Competitors Identified</h3>
+            <p class="empty-state-text">No sufficiently supported potential competitors identified from the available evidence.</p>
+          </div>
         `;
       }
     }
@@ -1324,51 +1340,186 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mapsFindingsSummary) {
       mapsFindingsSummary.textContent = data.maps_findings || 'Google Maps location evidence processed.';
     }
-    if (mapsCoordTag) mapsCoordTag.textContent = data.location;
-    if (mapTargetMarketText) mapTargetMarketText.textContent = `${data.brand} — ${data.location}`;
 
+    // Right Side: Location Context Information-First Action Panel
+    if (ctxLocationName) ctxLocationName.textContent = data.location;
+    if (ctxCompanyName) ctxCompanyName.textContent = data.brand;
+    if (ctxMapsStatus) {
+      const hasMapsFindings = Boolean(data.maps_findings && data.maps_findings.trim());
+      ctxMapsStatus.textContent = hasMapsFindings ? 'Findings Available' : 'No Findings';
+      ctxMapsStatus.className = `status-pill status-${hasMapsFindings ? 'positive' : 'neutral'}`;
+    }
+    if (btnOpenGoogleMaps) {
+      const mapsQuery = encodeURIComponent(`${data.brand}, ${data.location}`);
+      btnOpenGoogleMaps.href = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+    }
+
+    // Left Side: Nearby Business Listings
     if (mapsListingsContainer) {
       mapsListingsContainer.innerHTML = '';
-      if (mapPinsLayer) mapPinsLayer.innerHTML = '';
 
-      if (mapsListingCount) {
-        mapsListingCount.textContent = '1 finding';
-        mapsListingCount.style.display = 'inline-block';
+      let mapsResults = [];
+      if (Array.isArray(data.maps_results) && data.maps_results.length > 0) {
+        mapsResults = data.maps_results;
+      } else if (data.maps_findings && Array.isArray(data.maps_findings.listings) && data.maps_findings.listings.length > 0) {
+        mapsResults = data.maps_findings.listings;
       }
 
-      // Find if any source link is a maps link
-      const mapsUrl = sourceLinks.find(link => link.toLowerCase().includes('maps.google') || link.toLowerCase().includes('google.com/maps')) || '';
+      function resolveListingMapsUrl(item) {
+        if (!item) return '';
+        const directUrl = (item.google_maps_url || item.url || '').trim();
+        const placeId = (item.place_id || item.placeId || '').trim();
+        const name = (item.name || item.title || '').trim();
+        const address = (item.address || item.location || '').trim();
 
-      const mapsCard = document.createElement('div');
-      mapsCard.className = 'map-listing-card highlighted';
-      mapsCard.innerHTML = `
-        <div class="listing-top-row">
-          <h4 class="listing-name">${escapeHtml(data.brand)} Local Assessment</h4>
-          <span class="naming-signal-tag normal">Verified Surface</span>
-        </div>
-        <div class="listing-category-text">Google Maps Evidence</div>
-        <div class="listing-address-row">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>${escapeHtml(data.location)}</span>
-        </div>
-        <p style="font-size: 13px; color: var(--text-secondary); margin: 10px 0; line-height: 1.5;">
-          ${escapeHtml(data.maps_findings || 'No suspicious or duplicate listings detected in target vicinity.')}
-        </p>
-        <div class="listing-bottom-row" style="margin-top: 10px;">
-          <span class="finding-source-tag">Target Location: ${escapeHtml(data.location)}</span>
-          ${mapsUrl ? `
-            <a href="${escapeHtml(mapsUrl)}" target="_blank" rel="noopener noreferrer" class="btn-view-source">
-              <span>View On Maps</span>
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        // Priority 1: Actual listing-specific Google Maps URL / Place URL / query_place_id
+        if (directUrl && (directUrl.includes('/maps/place/') || directUrl.includes('query_place_id=') || directUrl.includes('place_id='))) {
+          return directUrl;
+        }
+
+        // Priority 2: Valid place ID
+        if (placeId && !placeId.startsWith('map-')) {
+          return `https://www.google.com/maps/place/?q=place_id:${encodeURIComponent(placeId)}`;
+        }
+
+        // Priority 3: Direct URL if present and not a generic search
+        if (directUrl) {
+          return directUrl;
+        }
+
+        // Priority 4: Listing-specific search by exact business name and address
+        if (name) {
+          const locTarget = address || data.location;
+          const specificQuery = `${name}, ${locTarget}`;
+          return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(specificQuery)}`;
+        }
+
+        // Do not fall back to generic brand-and-city search
+        return '';
+      }
+
+      if (mapsResults.length > 0) {
+        if (mapsListingCount) {
+          mapsListingCount.textContent = `${mapsResults.length} ${mapsResults.length === 1 ? 'listing' : 'listings'}`;
+          mapsListingCount.style.display = 'inline-block';
+        }
+
+        mapsResults.forEach((item) => {
+          const rawUrl = resolveListingMapsUrl(item);
+          const itemName = item && item.name ? String(item.name).trim() : `${data.brand} Local Assessment`;
+          const nameHtml = rawUrl
+            ? `<a href="${escapeHtml(rawUrl)}" target="_blank" rel="noopener noreferrer" class="listing-name-link"><span>${escapeHtml(itemName)}</span><span class="listing-link-icon" aria-hidden="true">↗</span></a>`
+            : escapeHtml(itemName);
+
+          const itemCategory = item && item.category ? item.category : 'Google Maps Evidence';
+          const itemLocation = item && item.location ? item.location : data.location;
+          const namingSignal = item && item.naming_signal ? item.naming_signal : 'Verified Surface';
+          const namingSignalClass = String(namingSignal).toLowerCase().includes('similar')
+            ? 'similar'
+            : String(namingSignal).toLowerCase().includes('review')
+            ? 'review'
+            : 'normal';
+
+          const summaryText = typeof data.maps_findings === 'string'
+            ? (data.maps_findings.trim() || 'Local Google Maps presence investigated.')
+            : (data.maps_findings && data.maps_findings.summary ? data.maps_findings.summary : 'Local Google Maps presence investigated.');
+
+          const mapsBtnHtml = rawUrl
+            ? `<a href="${escapeHtml(rawUrl)}" target="_blank" rel="noopener noreferrer" class="btn-view-source">
+                <span>View on Maps</span>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>`
+            : `<span class="btn-view-source disabled" aria-disabled="true" title="No direct listing link available">
+                <span>View on Maps</span>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </span>`;
+
+          const mapsCard = document.createElement('div');
+          mapsCard.className = 'map-listing-card highlighted';
+          mapsCard.innerHTML = `
+            <div class="listing-top-row">
+              <h4 class="listing-name">${nameHtml}</h4>
+              <span class="naming-signal-tag ${namingSignalClass}">${escapeHtml(namingSignal)}</span>
+            </div>
+            <div class="listing-category-text">${escapeHtml(itemCategory)}</div>
+            <div class="listing-address-row">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>${escapeHtml(itemLocation)}</span>
+            </div>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 10px 0; line-height: 1.5;">
+              ${escapeHtml(summaryText)}
+            </p>
+            <div class="listing-bottom-row" style="margin-top: 10px;">
+              <span class="finding-source-tag">Target Location: ${escapeHtml(itemLocation)}</span>
+              ${mapsBtnHtml}
+            </div>
+          `;
+          mapsListingsContainer.appendChild(mapsCard);
+        });
+      } else if (data.maps_findings && (typeof data.maps_findings === 'string' ? data.maps_findings.trim() : data.maps_findings.summary)) {
+        if (mapsListingCount) {
+          mapsListingCount.textContent = '1 finding';
+          mapsListingCount.style.display = 'inline-block';
+        }
+
+        const itemName = `${data.brand} Local Assessment`;
+        const summaryText = typeof data.maps_findings === 'string'
+          ? data.maps_findings.trim()
+          : (data.maps_findings.summary || '');
+
+        const mapsCard = document.createElement('div');
+        mapsCard.className = 'map-listing-card highlighted';
+        mapsCard.innerHTML = `
+          <div class="listing-top-row">
+            <h4 class="listing-name">${escapeHtml(itemName)}</h4>
+            <span class="naming-signal-tag normal">Verified Surface</span>
+          </div>
+          <div class="listing-category-text">Google Maps Evidence</div>
+          <div class="listing-address-row">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>${escapeHtml(data.location)}</span>
+          </div>
+          <p style="font-size: 13px; color: var(--text-secondary); margin: 10px 0; line-height: 1.5;">
+            ${escapeHtml(summaryText)}
+          </p>
+          <div class="listing-bottom-row" style="margin-top: 10px;">
+            <span class="finding-source-tag">Target Location: ${escapeHtml(data.location)}</span>
+            <span class="btn-view-source disabled" aria-disabled="true" title="No direct listing link available">
+              <span>View on Maps</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                 <polyline points="15 3 21 3 21 9"></polyline>
                 <line x1="10" y1="14" x2="21" y2="3"></line>
               </svg>
-            </a>
-          ` : ''}
-        </div>
-      `;
-      mapsListingsContainer.appendChild(mapsCard);
+            </span>
+          </div>
+        `;
+        mapsListingsContainer.appendChild(mapsCard);
+      } else {
+        if (mapsListingCount) {
+          mapsListingCount.style.display = 'none';
+        }
+        mapsListingsContainer.innerHTML = `
+          <div class="empty-state-box">
+            <div class="empty-state-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <h3 class="empty-state-title">No Maps Findings Returned</h3>
+            <p class="empty-state-text">No Google Maps listings were returned for this brand in the specified location.</p>
+          </div>
+        `;
+      }
     }
 
     // -------------------------------------------------------------
@@ -1440,9 +1591,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const filtered = allReportsList.filter(rep => {
       const matchSignal = currentFilter === 'all' || rep.signal === currentFilter;
       const query = currentSearchQuery.toLowerCase();
-      const matchQuery = !query || 
-        rep.brand.toLowerCase().includes(query) || 
-        rep.location.toLowerCase().includes(query) || 
+      const matchQuery = !query ||
+        rep.brand.toLowerCase().includes(query) ||
+        rep.location.toLowerCase().includes(query) ||
         rep.summary.toLowerCase().includes(query);
       return matchSignal && matchQuery;
     });

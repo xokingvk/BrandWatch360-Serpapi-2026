@@ -7,4 +7,5 @@ from serpapi_search_tools import maps_search
 
 maps_tool = maps_search(
     result_limit=10,
+    mode="full",
 )
