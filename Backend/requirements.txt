@@ -1,0 +1,9 @@
+# BrandGuard360 Backend — Production Dependencies
+fastapi==0.141.1
+uvicorn==0.54.0
+pydantic==2.13.5
+python-dotenv==1.2.3
+google-adk==2.10.0
+google-genai==2.25.0
+serpapi-search-tools==1.0.0
+serpapi==1.1.2
