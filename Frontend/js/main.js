@@ -16,8 +16,20 @@
 
 // =========================================================================
 // CENTRAL API CONFIGURATION
+// Primarily populated by js/config.js (window.BRANDGUARD_API_URL)
 // =========================================================================
-const API_BASE_URL = window.BRANDGUARD_API_URL || "http://localhost:8000";
+const isLocalhostEnv =
+  typeof window !== 'undefined' &&
+  (window.location.hostname === 'localhost' ||
+   window.location.hostname === '127.0.0.1' ||
+   window.location.hostname === '[::1]' ||
+   window.location.hostname === '' ||
+   window.location.protocol === 'file:');
+
+const API_BASE_URL =
+  (typeof window !== 'undefined' && window.BRANDGUARD_API_URL)
+    ? window.BRANDGUARD_API_URL
+    : (isLocalhostEnv ? "http://localhost:8000" : "https://brandguard360-backend.onrender.com");
 
 document.addEventListener('DOMContentLoaded', () => {
 
